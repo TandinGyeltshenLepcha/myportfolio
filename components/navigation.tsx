@@ -54,8 +54,6 @@ export function Navigation() {
           className="font-serif text-[18px] font-black text-cream tracking-tight"
           aria-label="Go to top"
         >
-          G<span className="text-amber">.</span>UI
-        </button>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1">
