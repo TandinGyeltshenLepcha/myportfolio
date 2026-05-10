@@ -52,20 +52,21 @@ export function AboutSection() {
           <div className="flex-1 h-px bg-brown/15" />
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-14 lg:gap-20 items-start">
 
           {/* Left: bio + skills */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex flex-col"
           >
             <h2 className="font-serif text-[clamp(30px,3.5vw,46px)] font-black leading-[1.05] text-dark mb-6">
               Turning ideas into<br />
               <span className="text-coral italic">experiences.</span>
             </h2>
 
-            <div className="space-y-4 text-[16px] leading-[1.8] text-muted font-light mb-8">
+            <div className="space-y-3.5 text-[15px] leading-[1.85] text-muted font-light mb-10">
               <p>
                 I'm a UI Component Designer specialising in game interfaces — the screens, overlays, and systems players interact with every session.
               </p>
@@ -75,29 +76,31 @@ export function AboutSection() {
             </div>
 
             {/* Skills */}
-            <div className="space-y-3">
-              <div className="text-[10px] font-medium tracking-[0.15em] uppercase text-muted mb-4">Skill Set</div>
-              {skills.map((skill, i) => (
-                <motion.div
-                  key={skill.label}
-                  className="flex items-center gap-4"
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.2 + i * 0.07 }}
-                >
-                  <div className="text-[13px] font-medium text-dark w-32 shrink-0">{skill.label}</div>
-                  <div className="flex-1 h-[4px] bg-brown/10 rounded-full overflow-hidden">
-                    <motion.div
-                      className="h-full rounded-full"
-                      style={{ background: skill.color }}
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: `${skill.level}%` } : {}}
-                      transition={{ delay: 0.3 + i * 0.07, duration: 0.8, ease: "easeOut" }}
-                    />
-                  </div>
-                  <div className="text-[12px] text-muted w-8 text-right">{skill.level}%</div>
-                </motion.div>
-              ))}
+            <div>
+              <div className="text-[10px] font-medium tracking-[0.15em] uppercase text-muted mb-5">Skill Set</div>
+              <div className="space-y-4">
+                {skills.map((skill, i) => (
+                  <motion.div
+                    key={skill.label}
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.2 + i * 0.07 }}
+                  >
+                    <div className="text-[13px] font-medium text-dark w-[130px] shrink-0">{skill.label}</div>
+                    <div className="flex-1 h-[3px] bg-brown/10 rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ background: skill.color }}
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: `${skill.level}%` } : {}}
+                        transition={{ delay: 0.3 + i * 0.07, duration: 0.8, ease: "easeOut" }}
+                      />
+                    </div>
+                    <div className="text-[11px] text-muted w-8 text-right tabular-nums">{skill.level}%</div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
@@ -106,10 +109,11 @@ export function AboutSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col gap-8"
           >
             {/* Availability card */}
-            <div className="bg-dark text-cream rounded-lg p-6 mb-8">
-              <div className="flex items-center gap-2 mb-3">
+            <div className="bg-dark text-cream rounded-lg p-6">
+              <div className="flex items-center gap-2 mb-4">
                 <motion.span
                   className="w-[6px] h-[6px] rounded-full bg-green-400"
                   animate={{ opacity: [1, 0.4, 1] }}
@@ -119,8 +123,8 @@ export function AboutSection() {
                   Currently Available
                 </span>
               </div>
-              <div className="font-serif text-[22px] font-bold mb-2">Let's build something together.</div>
-              <p className="text-[14px] leading-[1.65] text-cream/55 mb-5">
+              <div className="font-serif text-[21px] font-bold leading-tight mb-2">Let's build something together.</div>
+              <p className="text-[14px] leading-[1.65] text-cream/50 mb-5">
                 Open to freelance projects, collaborations, and full-time roles in game UI design.
               </p>
               <button
@@ -133,19 +137,19 @@ export function AboutSection() {
 
             {/* Process */}
             <div>
-              <div className="text-[10px] font-medium tracking-[0.15em] uppercase text-muted mb-4">My Process</div>
+              <div className="text-[10px] font-medium tracking-[0.15em] uppercase text-muted mb-3">My Process</div>
               <div className="divide-y divide-brown/10">
                 {process.map((step, i) => (
                   <motion.div
                     key={step.num}
-                    className="flex gap-4 py-4"
-                    initial={{ opacity: 0, y: 12 }}
+                    className="flex gap-4 py-3.5"
+                    initial={{ opacity: 0, y: 10 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.3 + i * 0.08 }}
                   >
                     <span className="font-serif text-[11px] font-bold text-coral min-w-[24px] pt-0.5">{step.num}</span>
                     <div>
-                      <div className="text-[14px] font-medium text-dark">{step.title}</div>
+                      <div className="text-[14px] font-medium text-dark leading-snug">{step.title}</div>
                       <div className="text-[13px] text-muted mt-0.5 leading-[1.5]">{step.desc}</div>
                     </div>
                   </motion.div>

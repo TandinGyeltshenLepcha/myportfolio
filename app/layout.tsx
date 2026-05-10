@@ -79,7 +79,6 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased ruled">
-        <a href="#main-content" className="skip-link">Skip to main content</a>
         <AriaAnnouncerProvider>
           <MusicProvider>
             <main id="main-content" role="main" tabIndex={-1}>
