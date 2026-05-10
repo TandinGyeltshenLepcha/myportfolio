@@ -48,12 +48,7 @@ export function Navigation() {
           backdropFilter: "blur(12px)",
         }}
       >
-        {/* Logo */}
-        <button
-          onClick={() => scrollTo("home")}
-          className="font-serif text-[18px] font-black text-cream tracking-tight"
-          aria-label="Go to top"
-        >
+        <div />
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1">
