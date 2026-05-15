@@ -115,7 +115,7 @@ export function HeroSection() {
             >
               <motion.button
                 onClick={scrollToWork}
-                className="relative flex items-center gap-2 px-7 py-3.5 rounded bg-dark text-amber text-[12px] font-medium tracking-[0.1em] uppercase overflow-hidden"
+                className="relative flex items-center gap-2 px-7 py-3.5 rounded-none bg-dark text-amber text-[12px] font-medium tracking-[0.1em] uppercase overflow-hidden"
                 style={{ boxShadow: "4px 4px 0 rgba(0,0,0,0.3)" }}
                 whileHover={{ x: -2, y: -2, boxShadow: "6px 6px 0 rgba(0,0,0,0.3)" }}
                 whileTap={{ scale: 0.97 }}
@@ -132,7 +132,7 @@ export function HeroSection() {
 
               <motion.button
                 onClick={scrollToContact}
-                className="px-7 py-3.5 rounded border-2 border-dark text-dark text-[12px] font-medium tracking-[0.1em] uppercase"
+                className="px-7 py-3.5 rounded-none border-2 border-dark text-dark text-[12px] font-medium tracking-[0.1em] uppercase"
                 whileHover={{ backgroundColor: "#000000", color: "#f8aa40" }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.2 }}

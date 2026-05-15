@@ -149,7 +149,7 @@ export function ContactSection() {
                 <motion.button
                   type="submit"
                   disabled={formState === "submitting"}
-                  className="flex items-center gap-2 text-[12px] font-medium tracking-[0.1em] uppercase bg-coral text-cream px-7 py-3.5 rounded"
+                  className="flex items-center gap-2 text-[12px] font-medium tracking-[0.1em] uppercase bg-coral text-cream px-7 py-3.5 rounded-none"
                   style={{ boxShadow: "4px 4px 0 #d68a1a" }}
                   whileHover={{ x: -2, y: -2, boxShadow: "6px 6px 0 #d68a1a" }}
                   whileTap={{ scale: 0.97 }}

@@ -124,7 +124,7 @@ export function AboutSection() {
               </p>
               <button
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="text-[11px] font-medium tracking-[0.1em] uppercase bg-coral text-cream px-5 py-2.5 rounded hover:opacity-85 transition-opacity"
+                className="text-[11px] font-medium tracking-[0.1em] uppercase bg-coral text-cream px-5 py-2.5 rounded-none hover:opacity-85 transition-opacity"
               >
                 Start a Conversation
               </button>
