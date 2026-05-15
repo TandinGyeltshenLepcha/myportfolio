@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { useRouter } from "next/navigation"
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion"
 
 const projects = [
   {
@@ -15,9 +15,10 @@ const projects = [
     tagBg: "rgba(20,83,45,0.10)",
     year: "2025",
     thumbBg: "linear-gradient(135deg, #0f2820 0%, #1E3D36 100%)",
-    accent: "#27ae60",
+    accent: "#f8aa40",
     featured: true,
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-03-05%20131454-e0vTj9ZkLpZ7xRz9jX5Q6g3fJ7w5Y7.png"
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-03-05%20131454-e0vTj9ZkLpZ7xRz9jX5Q6g3fJ7w5Y7.png",
+    code: "OBJ_01"
   },
   {
     id: "hephaestus-gun",
@@ -29,9 +30,10 @@ const projects = [
     tagBg: "rgba(124,45,18,0.10)",
     year: "2025",
     thumbBg: "linear-gradient(135deg, #2d1000 0%, #5a2a00 100%)",
-    accent: "#c0652b",
+    accent: "#f8aa40",
     featured: false,
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Digitalization%20with%20description-chIb4H7RVY0KXCWqqQT5lS0H4Zibmg.png"
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Digitalization%20with%20description-chIb4H7RVY0KXCWqqQT5lS0H4Zibmg.png",
+    code: "OBJ_02"
   },
   {
     id: "card-battles",
@@ -43,9 +45,10 @@ const projects = [
     tagBg: "rgba(124,10,2,0.10)",
     year: "2025",
     thumbBg: "linear-gradient(135deg, #160018 0%, #350040 100%)",
-    accent: "#b03030",
+    accent: "#f8aa40",
     featured: false,
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Property%201%3DGame%20Battle%20Screen%20%28Forest%29%20%281%29%201-WjjGm5aDKTq0ULcHiUrd4s5Z0v0TeR.png"
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Property%201%3DGame%20Battle%20Screen%20%28Forest%29%20%281%29%201-WjjGm5aDKTq0ULcHiUrd4s5Z0v0TeR.png",
+    code: "OBJ_03"
   },
 ]
 
@@ -96,131 +99,144 @@ export function WorkSection() {
         </div>
 
         {/* Projects: featured large + two smaller */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           {/* Featured project — full width */}
           {projects.filter(p => p.featured).map((project, i) => (
-            <motion.article
-              key={project.id}
-              className="md:col-span-2 group rounded-xl overflow-hidden cursor-pointer border"
-              style={{
-                background: "white",
-                borderColor: "rgba(17,5,0,0.07)",
-              }}
-              initial={{ opacity: 0, y: 28 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 }}
-              whileHover={{ y: -5, boxShadow: `0 20px 50px rgba(17,5,0,0.10)` }}
-              onClick={() => router.push(`/project/${project.id}`)}
-            >
-              <div className="grid md:grid-cols-2">
-                {/* Thumbnail */}
-                <div
-                  className="h-56 md:h-auto min-h-[200px] flex items-center justify-center relative overflow-hidden bg-dark/5"
-                  style={{ background: project.thumbBg }}
-                >
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `radial-gradient(circle at center, ${project.accent}10 0%, transparent 70%)` }}
-                  />
-                </div>
-
-                {/* Body */}
-                <div className="p-7 flex flex-col justify-between">
-                  <div>
-                    <span
-                      className="inline-block text-[10px] font-semibold tracking-[0.12em] uppercase px-3 py-1 rounded-full mb-4"
-                      style={{ background: project.tagBg, color: project.tagColor }}
-                    >
-                      {project.tag}
-                    </span>
-                    <h3 className="font-serif text-[26px] font-bold mb-2" style={{ color: "var(--dark)" }}>{project.title}</h3>
-                    <p className="text-[13px] leading-[1.7] mb-2" style={{ color: "var(--dark)", opacity: 0.6 }}>{project.subtitle}</p>
-                    <p className="text-[14px] leading-[1.7]" style={{ color: "var(--dark)", opacity: 0.6 }}>{project.description}</p>
-                  </div>
-                  <div className="flex items-center justify-between pt-5 mt-5 border-t" style={{ borderColor: "rgba(17,5,0,0.07)" }}>
-                    <span className="text-[11px] font-medium" style={{ color: "var(--dark)", opacity: 0.6 }}>{project.year}</span>
-                    <motion.div
-                      className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.05em]"
-                      style={{ color: "var(--dark)" }}
-                      whileHover={{ x: 4 }}
-                    >
-                      View project
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                        <path d="M3 8H13M13 8L9 4M13 8L9 12"/>
-                      </svg>
-                    </motion.div>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+            <ProjectCard key={project.id} project={project} className="md:col-span-2" />
           ))}
 
           {/* Secondary projects */}
           {projects.filter(p => !p.featured).map((project, i) => (
-            <motion.article
-              key={`${project.id}-${i}`}
-              className="group rounded-xl overflow-hidden cursor-pointer border"
-              style={{
-                background: "white",
-                borderColor: "rgba(17,5,0,0.07)",
-              }}
-              initial={{ opacity: 0, y: 28 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.18 + i * 0.1 }}
-              whileHover={{ y: -5, boxShadow: `0 16px 40px rgba(17,5,0,0.10)` }}
-              onClick={() => router.push(`/project/${project.id}`)}
-            >
-              {/* Thumbnail */}
-              <div
-                className="h-48 flex items-center justify-center relative overflow-hidden bg-dark/5"
-                style={{ background: project.thumbBg }}
-              >
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
-                />
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-                  style={{ background: `radial-gradient(circle at center, ${project.accent}10 0%, transparent 70%)` }}
-                />
-              </div>
-
-              {/* Body */}
-              <div className="p-6">
-                <span
-                  className="inline-block text-[10px] font-semibold tracking-[0.12em] uppercase px-3 py-1 rounded-full mb-3"
-                  style={{ background: project.tagBg, color: project.tagColor }}
-                >
-                  {project.tag}
-                </span>
-                <h3 className="font-serif text-[20px] font-bold mb-1.5" style={{ color: "var(--dark)" }}>{project.title}</h3>
-                <p className="text-[13px] leading-[1.65]" style={{ color: "var(--dark)", opacity: 0.6 }}>{project.description}</p>
-                <div className="flex items-center justify-between pt-4 mt-4 border-t" style={{ borderColor: "rgba(17,5,0,0.07)" }}>
-                  <span className="text-[11px] font-medium" style={{ color: "var(--dark)", opacity: 0.6 }}>{project.year}</span>
-                  <motion.div
-                    className="w-8 h-8 rounded-full flex items-center justify-center"
-                    style={{ background: "var(--dark)" }}
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
-                      <path d="M3 8H13M13 8L9 4M13 8L9 12"/>
-                    </svg>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.article>
+            <ProjectCard key={project.id} project={project} />
           ))}
 
         </div>
       </div>
     </section>
+  )
+}
+
+function ProjectCard({ project, className = "" }: { project: any; className?: string }) {
+  const router = useRouter()
+  const cardRef = useRef<HTMLDivElement>(null)
+  
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
+  const mouseXSpring = useSpring(x)
+  const mouseYSpring = useSpring(y)
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+    const xPct = mouseX / width - 0.5
+    const yPct = mouseY / height - 0.5
+    x.set(xPct)
+    y.set(yPct)
+  }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
+
+  return (
+    <motion.article
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`group relative perspective-1000 ${className}`}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      onClick={() => router.push(`/project/${project.id}`)}
+    >
+      <motion.div
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className="bg-white border border-dark/10 overflow-hidden cursor-pointer transition-shadow duration-500 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+      >
+        <div className={`grid ${project.featured ? "md:grid-cols-2" : "grid-cols-1"}`}>
+          {/* Thumbnail with HUD elements */}
+          <div className={`relative overflow-hidden bg-dark/5 ${project.featured ? "aspect-square md:aspect-auto" : "aspect-video"}`}>
+            {/* HUD Brackets */}
+            <div className="absolute inset-4 pointer-events-none z-20 transition-opacity duration-300 group-hover:opacity-100 opacity-40">
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-coral" />
+              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-coral" />
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-coral" />
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-coral" />
+            </div>
+
+            {/* Scanning Line */}
+            <motion.div 
+              className="absolute left-0 right-0 h-[2px] bg-coral/30 z-10 pointer-events-none"
+              animate={{ top: ["0%", "100%", "0%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
+
+            {/* Technical Metadata */}
+            <div className="absolute bottom-6 left-6 z-20 font-mono text-[8px] text-coral/60 uppercase tracking-widest pointer-events-none">
+              <div className="flex items-center gap-2">
+                <span className="w-1 h-1 bg-coral rounded-full animate-pulse" />
+                {project.code} // STABLE_DATA
+              </div>
+            </div>
+
+            <img 
+              src={project.image} 
+              alt={project.title}
+              className="absolute inset-0 w-full h-full object-contain p-8 transition-transform duration-700 group-hover:scale-110"
+              style={{ transform: "translateZ(20px)" }}
+            />
+            
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{ background: `radial-gradient(circle at center, ${project.accent}10 0%, transparent 70%)` }}
+            />
+          </div>
+
+          {/* Body */}
+          <div className="p-8 flex flex-col justify-between" style={{ transform: "translateZ(40px)" }}>
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span
+                  className="inline-block text-[10px] font-semibold tracking-[0.12em] uppercase px-3 py-1 bg-dark text-white"
+                >
+                  {project.tag}
+                </span>
+                <span className="font-mono text-[10px] text-dark/30">{project.year}</span>
+              </div>
+              <h3 className="font-serif text-[28px] font-black mb-3 text-dark">{project.title}</h3>
+              <p className="text-[14px] leading-[1.7] text-dark/60 font-light">{project.description}</p>
+            </div>
+            
+            <div className="flex items-center justify-between pt-6 mt-6 border-t border-dark/5">
+              <div className="flex gap-1">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="w-4 h-1 bg-coral/20 group-hover:bg-coral transition-colors" style={{ transitionDelay: `${i * 0.1}s` }} />
+                ))}
+              </div>
+              <motion.div
+                className="flex items-center gap-2 text-[11px] font-bold tracking-[0.1em] uppercase text-dark"
+                whileHover={{ x: 4 }}
+              >
+                Access Data
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <path d="M3 8H13M13 8L9 4M13 8L9 12"/>
+                </svg>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.article>
   )
 }
 
