@@ -17,7 +17,7 @@ const projects = [
     thumbBg: "linear-gradient(135deg, #0f2820 0%, #1E3D36 100%)",
     accent: "#27ae60",
     featured: true,
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20220608-2Y3Yl6zS6fL7xRz9jX5Q6g3fJ7w5Y7.png"
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-03-05%20131454-e0vTj9ZkLpZ7xRz9jX5Q6g3fJ7w5Y7.png"
   },
   {
     id: "hephaestus-gun",
@@ -116,17 +116,17 @@ export function WorkSection() {
               <div className="grid md:grid-cols-2">
                 {/* Thumbnail */}
                 <div
-                  className="h-56 md:h-auto min-h-[200px] flex items-center justify-center relative overflow-hidden"
+                  className="h-56 md:h-auto min-h-[200px] flex items-center justify-center relative overflow-hidden bg-dark/5"
                   style={{ background: project.thumbBg }}
                 >
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
                   />
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `radial-gradient(circle at center, ${project.accent}20 0%, transparent 70%)` }}
+                    style={{ background: `radial-gradient(circle at center, ${project.accent}10 0%, transparent 70%)` }}
                   />
                 </div>
 
@@ -178,17 +178,17 @@ export function WorkSection() {
             >
               {/* Thumbnail */}
               <div
-                className="h-48 flex items-center justify-center relative overflow-hidden"
+                className="h-48 flex items-center justify-center relative overflow-hidden bg-dark/5"
                 style={{ background: project.thumbBg }}
               >
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
                 />
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-                  style={{ background: `radial-gradient(circle at center, ${project.accent}20 0%, transparent 70%)` }}
+                  style={{ background: `radial-gradient(circle at center, ${project.accent}10 0%, transparent 70%)` }}
                 />
               </div>
 

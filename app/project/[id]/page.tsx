@@ -101,7 +101,7 @@ const projectDetails: Record<string, {
       "Improved my ability to combine interaction design with user experience, rather than treating them separately.",
       "Realized that websites can go beyond information delivery and become engaging, interactive environments."
     ],
-    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20220608-2Y3Yl6zS6fL7xRz9jX5Q6g3fJ7w5Y7.png"],
+    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-03-05%20131454-e0vTj9ZkLpZ7xRz9jX5Q6g3fJ7w5Y7.png"],
     uiAssets: {
       rockPaperScissors: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20131-X1orlNZH6vdbq6cmmKCyEf0vDgRsq6.png",
       settingsMenuOrange: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%2016-AXt0PZSTE8Yk521N0gbA1FAfKUAqSq.png",
@@ -311,18 +311,18 @@ export default function ProjectPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-4 border-dark/10 shadow-2xl bg-cream">
+          <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-4 border-dark/10 shadow-2xl bg-dark/5">
             {details.images.length > 0 ? (
               <img 
                 src={details.images[0]} 
                 alt={`${project.title} hero`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             ) : details.uiAssets?.rockPaperScissors ? (
               <img 
                 src={details.uiAssets.rockPaperScissors} 
                 alt={`${project.title} hero`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             ) : null}
             <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent pointer-events-none" />
