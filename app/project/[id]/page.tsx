@@ -299,8 +299,8 @@ export default function ProjectPage() {
         </div>
       </motion.div>
 
-      {/* Hero Image */}
-      {details.images && details.images.length > 0 && (
+      {/* Hero Image (Disabled for City Peak) */}
+      {id !== "city-peak" && details.images && details.images.length > 0 && (
         <motion.div
           className="w-full max-w-5xl mx-auto px-6 pt-12"
           initial={{ opacity: 0, scale: 0.98 }}
@@ -452,109 +452,97 @@ export default function ProjectPage() {
               Project UI Assets
             </h2>
             
-            {/* Team Cards */}
-            {details.uiAssets.teamCards && (
-              <motion.div
-                className="bg-cream p-6 rounded-lg border border-brown/10 mb-8 shadow-md"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.75 }}
-              >
-                <div className="text-[10px] tracking-[2px] uppercase text-coral mb-4 font-bold">Character Cards</div>
-                <div className="text-xs text-brown mb-4">Team character cards - Tandin, Lepcha, Yangki</div>
-                <img 
-                  src={details.uiAssets.teamCards} 
-                  alt="Team character cards"
-                  className="w-full h-auto object-contain rounded"
-                />
-              </motion.div>
-            )}
+            <div className="space-y-12">
+              {/* Featured: Character Cards */}
+              {details.uiAssets.teamCards && (
+                <div className="bg-cream p-8 rounded-xl border border-brown/10 shadow-sm">
+                  <div className="text-[10px] tracking-[2px] uppercase text-coral mb-4 font-bold">Character Identity</div>
+                  <h3 className="text-lg font-bold text-dark mb-4">Team Character Cards</h3>
+                  <img 
+                    src={details.uiAssets.teamCards} 
+                    alt="Team character cards"
+                    className="w-full h-auto object-contain rounded-lg"
+                  />
+                  <p className="mt-4 text-xs text-brown/60 italic text-center">Featuring Tandin, Lepcha, and Yangki</p>
+                </div>
+              )}
 
-            {/* Main Buttons Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-              {details.uiAssets.nextButton && (
-                <div className="text-center group">
-                  <motion.div className="bg-cream p-4 rounded-lg border-2 border-brown/10 mb-2 hover:border-coral transition-all">
-                    <img src={details.uiAssets.nextButton} alt="Next button" className="w-full h-auto" />
-                  </motion.div>
-                  <div className="text-[10px] tracking-[1px] uppercase text-brown font-bold">Next Button</div>
+              {/* Grid 1: Gameplay Controls */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Primary Actions */}
+                <div className="bg-cream p-8 rounded-xl border border-brown/10 shadow-sm">
+                  <div className="text-[10px] tracking-[2px] uppercase text-coral mb-6 font-bold">Action Components</div>
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { img: details.uiAssets.nextButton, label: "Next" },
+                      { img: details.uiAssets.restartButton, label: "Restart" },
+                      { img: details.uiAssets.retryButton, label: "Retry" },
+                      { img: details.uiAssets.nextLevelButton, label: "Next Level" }
+                    ].map((btn, i) => btn.img && (
+                      <div key={i} className="text-center group">
+                        <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral hover:shadow-md transition-all duration-300">
+                          <img src={btn.img} alt={btn.label} className="w-full h-auto" />
+                        </div>
+                        <div className="mt-2 text-[9px] tracking-[1px] uppercase text-brown/60 font-bold">{btn.label}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              )}
-              {details.uiAssets.restartButton && (
-                <div className="text-center group">
-                  <motion.div className="bg-cream p-4 rounded-lg border-2 border-brown/10 mb-2 hover:border-coral transition-all">
-                    <img src={details.uiAssets.restartButton} alt="Restart button" className="w-full h-auto" />
-                  </motion.div>
-                  <div className="text-[10px] tracking-[1px] uppercase text-brown font-bold">Restart Button</div>
-                </div>
-              )}
-              {details.uiAssets.retryButton && (
-                <div className="text-center group">
-                  <motion.div className="bg-cream p-4 rounded-lg border-2 border-brown/10 mb-2 hover:border-coral transition-all">
-                    <img src={details.uiAssets.retryButton} alt="Retry button" className="w-full h-auto" />
-                  </motion.div>
-                  <div className="text-[10px] tracking-[1px] uppercase text-brown font-bold">Retry Button</div>
-                </div>
-              )}
-              {details.uiAssets.nextLevelButton && (
-                <div className="text-center group">
-                  <motion.div className="bg-cream p-4 rounded-lg border-2 border-brown/10 mb-2 hover:border-coral transition-all">
-                    <img src={details.uiAssets.nextLevelButton} alt="Next Level button" className="w-full h-auto" />
-                  </motion.div>
-                  <div className="text-[10px] tracking-[1px] uppercase text-brown font-bold">Next Level Button</div>
-                </div>
-              )}
-            </div>
 
-            {/* Menu Buttons */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              {details.uiAssets.mainMenuOrange && (
-                <div className="group">
-                  <div className="text-[10px] tracking-[1px] uppercase text-brown font-bold mb-2">Main Menu orange</div>
-                  <motion.div className="bg-cream p-6 rounded-lg border-2 border-brown/10 hover:border-coral transition-all">
-                    <img src={details.uiAssets.mainMenuOrange} alt="Main Menu orange" className="w-full h-auto" />
-                  </motion.div>
-                  <div className="mt-2 text-[9px] text-brown/50 uppercase tracking-[1px]">Main Menu (Outline)</div>
+                {/* System Navigation */}
+                <div className="bg-cream p-8 rounded-xl border border-brown/10 shadow-sm">
+                  <div className="text-[10px] tracking-[2px] uppercase text-coral mb-6 font-bold">System Navigation</div>
+                  <div className="space-y-6">
+                    {/* Main Menus */}
+                    <div className="grid grid-cols-2 gap-4">
+                      {details.uiAssets.mainMenuOrange && (
+                        <div className="group">
+                          <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral transition-all">
+                            <img src={details.uiAssets.mainMenuOrange} alt="Main Menu" className="w-full h-auto" />
+                          </div>
+                          <div className="mt-2 text-[8px] text-brown/40 uppercase text-center font-bold">Menu (Outline)</div>
+                        </div>
+                      )}
+                      {details.uiAssets.mainMenuGray && (
+                        <div className="group">
+                          <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral transition-all">
+                            <img src={details.uiAssets.mainMenuGray} alt="Main Menu" className="w-full h-auto" />
+                          </div>
+                          <div className="mt-2 text-[8px] text-brown/40 uppercase text-center font-bold">Menu (Solid)</div>
+                        </div>
+                      )}
+                    </div>
+                    {/* Back Options */}
+                    <div className="grid grid-cols-2 gap-4">
+                      {details.uiAssets.backButtonOrange && (
+                        <div className="group">
+                          <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral transition-all flex justify-center">
+                            <img src={details.uiAssets.backButtonOrange} alt="Back" className="h-10 w-auto" />
+                          </div>
+                          <div className="mt-2 text-[8px] text-brown/40 uppercase text-center font-bold">Back (Orange)</div>
+                        </div>
+                      )}
+                      {details.uiAssets.backButtonRed && (
+                        <div className="group">
+                          <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral transition-all flex justify-center">
+                            <img src={details.uiAssets.backButtonRed} alt="Back" className="h-10 w-auto" />
+                          </div>
+                          <div className="mt-2 text-[8px] text-brown/40 uppercase text-center font-bold">Back (Red)</div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              )}
-              {details.uiAssets.mainMenuGray && (
-                <div className="group">
-                  <div className="text-[10px] tracking-[1px] uppercase text-brown font-bold mb-2">Main Menu gray</div>
-                  <motion.div className="bg-cream p-6 rounded-lg border-2 border-brown/10 hover:border-coral transition-all">
-                    <img src={details.uiAssets.mainMenuGray} alt="Main Menu gray" className="w-full h-auto" />
-                  </motion.div>
-                  <div className="mt-2 text-[9px] text-brown/50 uppercase tracking-[1px]">Main Menu (Solid)</div>
-                </div>
-              )}
-            </div>
+              </div>
 
-            {/* Secondary Buttons */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Game Modes */}
               {details.uiAssets.zomboyButton && (
-                <div className="text-center">
-                  <div className="text-[10px] tracking-[1px] uppercase text-brown font-bold mb-2 text-left">Zomboy button</div>
-                  <motion.div className="bg-cream p-4 rounded-lg border-2 border-brown/10 hover:border-coral transition-all">
-                    <img src={details.uiAssets.zomboyButton} alt="Zomboy button" className="w-full h-auto" />
-                  </motion.div>
-                  <div className="mt-2 text-[9px] text-brown/50 uppercase tracking-[1px]">Game Mode Button</div>
-                </div>
-              )}
-              {details.uiAssets.backButtonOrange && (
-                <div className="text-center">
-                  <div className="text-[10px] tracking-[1px] uppercase text-brown font-bold mb-2 text-left">Back button orange</div>
-                  <motion.div className="bg-cream p-4 rounded-lg border-2 border-brown/10 hover:border-coral transition-all">
-                    <img src={details.uiAssets.backButtonOrange} alt="Back button orange" className="w-full h-auto" />
-                  </motion.div>
-                  <div className="mt-2 text-[9px] text-brown/50 uppercase tracking-[1px]">Back (Orange)</div>
-                </div>
-              )}
-              {details.uiAssets.backButtonRed && (
-                <div className="text-center">
-                  <div className="text-[10px] tracking-[1px] uppercase text-brown font-bold mb-2 text-left">Back button red</div>
-                  <motion.div className="bg-cream p-4 rounded-lg border-2 border-brown/10 hover:border-coral transition-all">
-                    <img src={details.uiAssets.backButtonRed} alt="Back button red" className="w-full h-auto" />
-                  </motion.div>
-                  <div className="mt-2 text-[9px] text-brown/50 uppercase tracking-[1px]">Back (Red)</div>
+                <div className="bg-cream p-8 rounded-xl border border-brown/10 shadow-sm max-w-sm mx-auto">
+                  <div className="text-[10px] tracking-[2px] uppercase text-coral mb-6 font-bold text-center">Game Modes</div>
+                  <div className="bg-white p-6 rounded-lg border border-brown/5 hover:border-coral hover:shadow-lg transition-all group">
+                    <img src={details.uiAssets.zomboyButton} alt="Zomboy Mode" className="w-full h-auto" />
+                    <div className="mt-4 text-[10px] tracking-[2px] uppercase text-dark font-bold text-center">Zomboy Button</div>
+                  </div>
                 </div>
               )}
             </div>
