@@ -17,7 +17,7 @@ const projects = [
     thumbBg: "linear-gradient(135deg, #0f2820 0%, #1E3D36 100%)",
     accent: "#f8aa40",
     featured: true,
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20220608-2Y3Yl6zS6fL7xRz9jX5Q6g3fJ7w5Y7.png",
+    image: "/icons/HomePage.png",
     code: "OBJ_01"
   },
   {
