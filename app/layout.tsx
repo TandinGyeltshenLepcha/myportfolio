@@ -72,7 +72,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
       <body className="font-sans antialiased ruled">
-        <a href="#main-content" className="skip-link">Skip to main content</a>
         <AriaAnnouncerProvider>
           <MusicProvider>
             <main id="main-content" role="main" tabIndex={-1}>

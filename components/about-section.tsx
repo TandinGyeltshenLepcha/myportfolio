@@ -62,7 +62,7 @@ export function AboutSection() {
           >
             <h2 className="font-serif text-[clamp(30px,3.5vw,46px)] font-black leading-[1.05] text-dark mb-6">
               Turning ideas into<br />
-              <span className="text-coral italic">experiences.</span>
+              <span className="text-white italic">experiences.</span>
             </h2>
 
             <div className="space-y-4 text-[16px] leading-[1.8] text-muted font-light mb-8">
