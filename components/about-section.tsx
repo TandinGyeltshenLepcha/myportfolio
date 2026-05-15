@@ -8,7 +8,7 @@ const skills = [
   { label: "Game UI", level: 98, color: "#C94A26" },
   { label: "React", level: 90, color: "#61dafb" },
   { label: "Design Systems", level: 95, color: "#2D4A42" },
-  { label: "Animation", level: 85, color: "#F7A840" },
+  { label: "Animation", level: 85, color: "#ffffff" },
   { label: "Concept Art", level: 80, color: "#9c27b0" },
 ]
 

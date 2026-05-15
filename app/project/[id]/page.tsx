@@ -303,6 +303,33 @@ export default function ProjectPage() {
         </div>
       </motion.div>
 
+      {/* Hero Image */}
+      {(details.images.length > 0 || details.uiAssets) && (
+        <motion.div
+          className="w-full max-w-5xl mx-auto px-6 pt-12"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-4 border-dark/10 shadow-2xl bg-cream">
+            {details.images.length > 0 ? (
+              <img 
+                src={details.images[0]} 
+                alt={`${project.title} hero`}
+                className="w-full h-full object-cover"
+              />
+            ) : details.uiAssets?.rockPaperScissors ? (
+              <img 
+                src={details.uiAssets.rockPaperScissors} 
+                alt={`${project.title} hero`}
+                className="w-full h-full object-cover"
+              />
+            ) : null}
+            <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent pointer-events-none" />
+          </div>
+        </motion.div>
+      )}
+
       {/* Content */}
       <div className="max-w-5xl mx-auto px-6 py-12">
         {/* Title Section */}

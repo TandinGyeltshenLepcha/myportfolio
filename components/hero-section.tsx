@@ -185,27 +185,6 @@ export function HeroSection() {
 
       {/* Stats strip — no "100% Gamified" */}
       <StatStrip />
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <span className="text-[10px] tracking-[3px] uppercase text-dark/40">Scroll</span>
-        <motion.div
-          className="w-5 h-8 rounded-full border border-dark/25 flex justify-center pt-1.5"
-          animate={{ y: [0, 4, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <motion.div
-            className="w-1 h-1 rounded-full bg-dark"
-            animate={{ y: [0, 10, 0], opacity: [1, 0.3, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        </motion.div>
-      </motion.div>
     </section>
   )
 }

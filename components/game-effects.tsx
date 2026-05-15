@@ -225,7 +225,7 @@ export function useScreenShake() {
 export function PowerBar({ 
   value, 
   max, 
-  color = "#E4663D",
+  color = "#f8aa40",
   label,
   showPulse = true
 }: { 

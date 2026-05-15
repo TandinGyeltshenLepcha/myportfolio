@@ -393,7 +393,7 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
                       transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                       style={{ transformOrigin: "center" }}
                     />
-                    <circle cx="24" cy="24" r="4" fill="#fffbe6" />
+                    <circle cx="24" cy="24" r="4" fill="#ffffff" />
                   </svg>
                 </motion.span>{" "}
                 <GlitchyText text="Tandin" isActive={isGlitching} />

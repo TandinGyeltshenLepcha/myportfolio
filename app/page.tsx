@@ -69,7 +69,6 @@ export default function Home() {
         <>
           <AchievementPopups achievements={achievements} />
           <main id="main-content" className="relative" role="main">
-            <ScrollProgress />
             <CustomCursor />
             <Navigation />
             <HeroSection />

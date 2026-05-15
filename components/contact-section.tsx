@@ -48,11 +48,17 @@ export function ContactSection() {
 
             <div className="space-y-3">
               {[
-                { icon: "✉", label: "Email", value: "hello@gameui.design" },
-                { icon: "⬡", label: "GitHub", value: "github.com/gameui" },
-                { icon: "◈", label: "Dribbble", value: "dribbble.com/gameui" },
+                { icon: "✉", label: "Email", value: "tandingyeltshenlepcha@gmail.com", href: "mailto:tandingyeltshenlepcha@gmail.com" },
+                { icon: "⬡", label: "LinkedIn", value: "linkedin.com/in/tandingyeltshenlepcha", href: "https://www.linkedin.com/in/tandingyeltshenlepcha" },
+                { icon: "◈", label: "Dribbble", value: "dribbble.com/gameui", href: "https://dribbble.com/gameui" },
               ].map((link) => (
-                <div key={link.label} className="flex items-center gap-3 group cursor-pointer">
+                <a 
+                  key={link.label} 
+                  href={link.href}
+                  target={link.href.startsWith('http') ? "_blank" : undefined}
+                  rel={link.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                  className="flex items-center gap-3 group cursor-pointer"
+                >
                   <div className="w-9 h-9 rounded-md border border-white/10 flex items-center justify-center text-cream/40 text-[14px] group-hover:border-cream/25 group-hover:text-cream/70 transition-all">
                     {link.icon}
                   </div>
@@ -60,7 +66,7 @@ export function ContactSection() {
                     <div className="text-[10px] tracking-[0.12em] uppercase text-cream/30">{link.label}</div>
                     <div className="text-[13px] text-cream/55 group-hover:text-cream/80 transition-colors">{link.value}</div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </motion.div>
