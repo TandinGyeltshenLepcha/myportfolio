@@ -152,8 +152,8 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             style={{
               backgroundImage: `
-                linear-gradient(rgba(228,102,61,0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(228,102,61,0.1) 1px, transparent 1px)
+                linear-gradient(rgba(248,170,64,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(248,170,64,0.1) 1px, transparent 1px)
               `,
               backgroundSize: "60px 60px",
             }}
@@ -173,8 +173,8 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
                 transform: "rotateX(75deg)",
                 transformOrigin: "top center",
                 backgroundImage: `
-                  linear-gradient(rgba(228,102,61,0.4) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(228,102,61,0.4) 1px, transparent 1px)
+                  linear-gradient(rgba(248,170,64,0.4) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(248,170,64,0.4) 1px, transparent 1px)
                 `,
                 backgroundSize: "60px 60px",
               }}
@@ -187,7 +187,7 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
             <div
               className="absolute top-0 left-0 right-0 h-32"
               style={{
-                background: "linear-gradient(to bottom, rgba(228,102,61,0.3) 0%, transparent 100%)",
+                background: "linear-gradient(to bottom, rgba(248,170,64,0.3) 0%, transparent 100%)",
               }}
             />
           </div>
@@ -261,7 +261,7 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
                   <polygon
                     points="15,0 30,30 0,30"
                     fill="none"
-                    stroke="#E4663D"
+                    stroke="#f8aa40"
                     strokeWidth="1.5"
                   />
                 </svg>
@@ -388,7 +388,7 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
                   <svg width="48" height="48" viewBox="0 0 48 48" className="inline-block -mb-1">
                     <motion.path
                       d="M24 4L28 20L44 24L28 28L24 44L20 28L4 24L20 20Z"
-                      fill="#E4663D"
+                      fill="#f8aa40"
                       animate={{ rotate: 360 }}
                       transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                       style={{ transformOrigin: "center" }}
@@ -471,8 +471,8 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
                     whileTap={{ scale: 0.95 }}
                     animate={{
                       boxShadow: hoverStart
-                        ? "0 0 40px rgba(228,102,61,0.6)"
-                        : "0 0 20px rgba(228,102,61,0.3)",
+                        ? "0 0 40px rgba(248,170,64,0.6)"
+                        : "0 0 20px rgba(248,170,64,0.3)",
                     }}
                   >
                     {/* Animated border */}

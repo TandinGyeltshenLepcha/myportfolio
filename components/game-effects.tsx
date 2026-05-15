@@ -23,7 +23,7 @@ export function Scanlines() {
       <div 
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(26,8,0,0.15) 100%)`
+          background: `radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(0,0,0,0.15) 100%)`
         }}
       />
     </div>

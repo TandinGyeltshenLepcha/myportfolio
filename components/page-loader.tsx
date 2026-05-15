@@ -68,8 +68,8 @@ export function PageLoader() {
             className="absolute inset-0 opacity-10"
             style={{
               backgroundImage: `
-                linear-gradient(rgba(228,102,61,0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(228,102,61,0.3) 1px, transparent 1px)
+                linear-gradient(rgba(248,170,64,0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(248,170,64,0.3) 1px, transparent 1px)
               `,
               backgroundSize: "50px 50px"
             }}

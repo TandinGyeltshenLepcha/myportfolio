@@ -95,7 +95,7 @@ export function CustomCursor() {
           >
             <path
               d="M8 0L8.8 7L16 8L8.8 9L8 16L7.2 9L0 8L7.2 7Z"
-              fill={`rgba(228, 102, 61, ${0.3 + (i * 0.1)})`}
+              fill={`rgba(248, 170, 64, ${0.3 + (i * 0.1)})`}
             />
           </svg>
         </motion.div>
@@ -165,7 +165,7 @@ export function CustomCursor() {
             cy="10"
             r="8"
             fill="none"
-            stroke="#F5C518"
+            stroke="#f8aa40"
             strokeWidth="1"
             animate={{ 
               r: isHovering ? [8, 10, 8] : 8,
@@ -176,13 +176,13 @@ export function CustomCursor() {
           {/* Star shape */}
           <motion.path
             d="M10 2L11 8L18 10L11 12L10 18L9 12L2 10L9 8Z"
-            fill="#0A0A0A"
+            fill="#000000"
             animate={{ 
-              fill: isClicking ? "#F7A840" : "#E4663D"
+              fill: isClicking ? "#d68a1a" : "#f8aa40"
             }}
           />
           {/* Center dot */}
-          <circle cx="10" cy="10" r="2" fill="#F5C518" />
+          <circle cx="10" cy="10" r="2" fill="#f8aa40" />
         </motion.svg>
       </motion.div>
 
@@ -198,8 +198,8 @@ export function CustomCursor() {
             height: isClicking ? 24 : isHovering ? 64 : 40,
             marginLeft: isClicking ? -12 : isHovering ? -32 : -20,
             marginTop: isClicking ? -12 : isHovering ? -32 : -20,
-            borderColor: isHovering ? "#0A0A0A" : "#F5C518",
-            backgroundColor: isHovering ? "rgba(10,10,10,0.1)" : "rgba(228,102,61,0)",
+            borderColor: isHovering ? "#000000" : "#f8aa40",
+            backgroundColor: isHovering ? "rgba(0,0,0,0.1)" : "rgba(248,170,64,0)",
             rotate: isHovering ? 45 : 0,
             borderRadius: isHovering ? "8px" : "50%"
           }}

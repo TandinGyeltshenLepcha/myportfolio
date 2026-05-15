@@ -55,8 +55,8 @@ export function Navigation() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         style={{
           background: scrolled
-            ? "rgba(26,8,0,0.97)"
-            : "rgba(26,8,0,0.85)",
+            ? "rgba(0,0,0,0.97)"
+            : "rgba(0,0,0,0.85)",
           borderBottom: "1px solid rgba(255,255,255,0.07)",
           backdropFilter: "blur(12px)",
         }}

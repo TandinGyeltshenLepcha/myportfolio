@@ -11,10 +11,10 @@ export function WavesSvg({ flip = false, className = "" }: { flip?: boolean; cla
       height="84"
       viewBox="0 0 200 84"
     >
-      <path d="M0 12 Q25 2 50 12 Q75 22 100 12 Q125 2 150 12 Q175 22 200 12" fill="none" stroke="#7a3c00" strokeWidth="1.8" />
-      <path d="M0 30 Q25 20 50 30 Q75 40 100 30 Q125 20 150 30 Q175 40 200 30" fill="none" stroke="#7a3c00" strokeWidth="1.8" />
-      <path d="M0 48 Q25 38 50 48 Q75 58 100 48 Q125 38 150 48 Q175 58 200 48" fill="none" stroke="#7a3c00" strokeWidth="1.8" />
-      <path d="M0 66 Q25 56 50 66 Q75 76 100 66 Q125 56 150 66 Q175 76 200 66" fill="none" stroke="#7a3c00" strokeWidth="1.8" />
+      <path d="M0 12 Q25 2 50 12 Q75 22 100 12 Q125 2 150 12 Q175 22 200 12" fill="none" stroke="#d68a1a" strokeWidth="1.8" />
+      <path d="M0 30 Q25 20 50 30 Q75 40 100 30 Q125 20 150 30 Q175 40 200 30" fill="none" stroke="#d68a1a" strokeWidth="1.8" />
+      <path d="M0 48 Q25 38 50 48 Q75 58 100 48 Q125 38 150 48 Q175 58 200 48" fill="none" stroke="#d68a1a" strokeWidth="1.8" />
+      <path d="M0 66 Q25 56 50 66 Q75 76 100 66 Q125 56 150 66 Q175 76 200 66" fill="none" stroke="#d68a1a" strokeWidth="1.8" />
     </svg>
   )
 }
@@ -112,7 +112,7 @@ export function SettingsButtonsSvg() {
           transition={{ duration: 0.4, delay: i * 0.1 }}
           whileHover={{ scale: 1.02, x: 5 }}
         >
-          <rect x="5.5" y="1.5" width="438" height="71" fill="#F27F0C" stroke="white" strokeWidth="3" />
+          <rect x="5.5" y="1.5" width="438" height="71" fill="#f8aa40" stroke="white" strokeWidth="3" />
         </motion.svg>
       ))}
     </div>
@@ -197,8 +197,8 @@ export function ButtonLibrarySvg() {
         height="30"
         whileHover={{ scale: 1.02 }}
       >
-        <rect x="17" y="13" width="519" height="159" fill="#F27F0C" />
-        <rect x="10.5" y="6.5" width="532" height="172" stroke="#F27F0C" strokeWidth="13" fill="none" />
+        <rect x="17" y="13" width="519" height="159" fill="#f8aa40" />
+        <rect x="10.5" y="6.5" width="532" height="172" stroke="#f8aa40" strokeWidth="13" fill="none" />
       </motion.svg>
     </div>
   )
@@ -230,8 +230,8 @@ export function BackArrowsSvg() {
         transition={{ type: "spring", stiffness: 400 }}
       >
         <rect x="4" y="4" width="109" height="82" fill="white" />
-        <rect x="2" y="2" width="113" height="86" stroke="#F27F0C" strokeWidth="4" fill="none" />
-        <path d="M85 42.188H44.687L63.204 23.671L58.5 19L32 45.5L58.5 72L63.171 67.329L44.687 48.813H85V42.188Z" fill="white" stroke="#F27F0C" strokeWidth="4" />
+        <rect x="2" y="2" width="113" height="86" stroke="#f8aa40" strokeWidth="4" fill="none" />
+        <path d="M85 42.188H44.687L63.204 23.671L58.5 19L32 45.5L58.5 72L63.171 67.329L44.687 48.813H85V42.188Z" fill="white" stroke="#f8aa40" strokeWidth="4" />
       </motion.svg>
     </div>
   )
@@ -254,7 +254,7 @@ export function SettingsMenuSvg() {
             transition={{ delay: i * 0.1 }}
             whileHover={{ scale: 1.05, x: 3 }}
           >
-            <rect x="5.5" y="1.5" width="438" height="71" fill="#F27F0C" stroke="white" strokeWidth="3" />
+            <rect x="5.5" y="1.5" width="438" height="71" fill="#f8aa40" stroke="white" strokeWidth="3" />
           </motion.svg>
         ))}
       </div>

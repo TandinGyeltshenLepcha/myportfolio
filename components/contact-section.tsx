@@ -144,8 +144,8 @@ export function ContactSection() {
                   type="submit"
                   disabled={formState === "submitting"}
                   className="flex items-center gap-2 text-[12px] font-medium tracking-[0.1em] uppercase bg-coral text-cream px-7 py-3.5 rounded"
-                  style={{ boxShadow: "4px 4px 0 #E89820" }}
-                  whileHover={{ x: -2, y: -2, boxShadow: "6px 6px 0 #E89820" }}
+                  style={{ boxShadow: "4px 4px 0 #d68a1a" }}
+                  whileHover={{ x: -2, y: -2, boxShadow: "6px 6px 0 #d68a1a" }}
                   whileTap={{ scale: 0.97 }}
                 >
                   {formState === "submitting" ? "Sending…" : "Send Message"}

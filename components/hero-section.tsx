@@ -49,7 +49,7 @@ export function HeroSection() {
       <div
         className="absolute inset-0 opacity-[0.035]"
         style={{
-          backgroundImage: `linear-gradient(rgba(10,10,10,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.6) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.6) 1px, transparent 1px)`,
           backgroundSize: "48px 48px",
         }}
       />
@@ -86,7 +86,7 @@ export function HeroSection() {
               transition={{ duration: 0.7, delay: 0.1 }}
             >
               Designing<br />
-              <span className="text-white italic" style={{ WebkitTextStroke: "1px #0A0A0A" }}>
+              <span className="text-white italic" style={{ WebkitTextStroke: "1px #000000" }}>
                 {typedText}
                 <motion.span
                   className="inline-block w-[3px] h-[0.9em] bg-dark ml-1 align-middle"
@@ -116,8 +116,8 @@ export function HeroSection() {
               <motion.button
                 onClick={scrollToWork}
                 className="relative flex items-center gap-2 px-7 py-3.5 rounded bg-dark text-amber text-[12px] font-medium tracking-[0.1em] uppercase overflow-hidden"
-                style={{ boxShadow: "4px 4px 0 rgba(10,10,10,0.3)" }}
-                whileHover={{ x: -2, y: -2, boxShadow: "6px 6px 0 rgba(10,10,10,0.3)" }}
+                style={{ boxShadow: "4px 4px 0 rgba(0,0,0,0.3)" }}
+                whileHover={{ x: -2, y: -2, boxShadow: "6px 6px 0 rgba(0,0,0,0.3)" }}
                 whileTap={{ scale: 0.97 }}
               >
                 See the Work
@@ -133,7 +133,7 @@ export function HeroSection() {
               <motion.button
                 onClick={scrollToContact}
                 className="px-7 py-3.5 rounded border-2 border-dark text-dark text-[12px] font-medium tracking-[0.1em] uppercase"
-                whileHover={{ backgroundColor: "#0A0A0A", color: "#F5C518" }}
+                whileHover={{ backgroundColor: "#000000", color: "#f8aa40" }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.2 }}
               >
@@ -148,7 +148,7 @@ export function HeroSection() {
               className="top-0 left-[5%]"
               delay={0.4}
               rotation={-2}
-              shadowColor="rgba(10,10,10,0.25)"
+              shadowColor="rgba(0,0,0,0.25)"
             >
               <div className="bg-white p-3 w-[260px]">
                 <div className="text-[9px] tracking-[3px] uppercase text-dark/40 font-sans mb-2">Status Bars</div>
@@ -160,7 +160,7 @@ export function HeroSection() {
               className="top-[40px] right-0"
               delay={0.6}
               rotation={2}
-              shadowColor="rgba(10,10,10,0.2)"
+              shadowColor="rgba(0,0,0,0.2)"
             >
               <div className="bg-white p-3 w-[190px]">
                 <div className="text-[9px] tracking-[3px] uppercase text-dark/40 font-sans mb-2">Settings Menu</div>
@@ -172,7 +172,7 @@ export function HeroSection() {
               className="bottom-[30px] left-[3%]"
               delay={0.8}
               rotation={-1}
-              shadowColor="rgba(10,10,10,0.2)"
+              shadowColor="rgba(0,0,0,0.2)"
             >
               <div className="bg-white p-3 w-[210px]">
                 <div className="text-[9px] tracking-[3px] uppercase text-dark/40 font-sans mb-2">Rock Paper Scissors</div>
