@@ -352,35 +352,6 @@ export default function ProjectPage() {
           </div>
         </motion.div>
 
-        {/* Image Gallery */}
-        {details.images.length > 0 && (
-          <motion.div
-            className="mb-12 grid gap-6"
-            style={{ gridTemplateColumns: details.images.length === 1 ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            {details.images.map((img, i) => (
-              <motion.div
-                key={i}
-                className="relative overflow-hidden rounded-lg border-2 border-brown/20 bg-cream"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 + i * 0.1 }}
-                whileHover={{ scale: 1.01 }}
-              >
-                <img 
-                  src={img} 
-                  alt={`${project.title} screenshot ${i + 1}`}
-                  className="w-full h-auto object-contain"
-                  loading="lazy"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-
         {/* UI Assets Section for City Peak */}
         {details.uiAssets && (
           <motion.div

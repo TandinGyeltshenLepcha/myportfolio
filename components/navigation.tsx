@@ -61,15 +61,6 @@ export function Navigation() {
           backdropFilter: "blur(12px)",
         }}
       >
-        {/* Logo */}
-        <button
-          onClick={() => scrollTo("home")}
-          className="font-serif text-[18px] font-black text-cream tracking-tight"
-          aria-label="Go to top"
-        >
-          TG
-        </button>
-
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (

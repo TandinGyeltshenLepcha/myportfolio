@@ -8,13 +8,6 @@ export function Footer() {
   return (
     <footer className="bg-dark border-t border-white/[0.06] py-8">
       <div className="max-w-[1100px] mx-auto px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <button
-          onClick={() => scrollTo("home")}
-          className="font-serif text-[16px] font-black text-cream hover:text-amber transition-colors"
-        >
-          G<span className="text-amber">.</span>UI
-        </button>
-
         <div className="flex items-center gap-1">
           {["Home", "Work", "About", "Contact"].map((label, i) => (
             <button
