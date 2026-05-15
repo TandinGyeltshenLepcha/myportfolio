@@ -48,7 +48,12 @@ export function Navigation() {
           backdropFilter: "blur(12px)",
         }}
       >
-        <div />
+        {/* Logo */}
+        <button
+          onClick={() => scrollTo("home")}
+          className="font-serif text-[18px] font-black text-cream tracking-tight"
+          aria-label="Go to top"
+        >
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1">
@@ -58,8 +63,8 @@ export function Navigation() {
               onClick={() => scrollTo(item.id)}
               className={`text-[11px] font-medium tracking-[0.08em] uppercase px-4 py-1.5 rounded transition-all duration-200
                 ${activeSection === item.id
-                  ? "text-amber bg-white/5"
-                  : "text-cream/50 hover:text-cream hover:bg-white/5"
+                  ? "text-amber bg-white/10"
+                  : "text-white/60 hover:text-white hover:bg-white/5"
                 }`}
             >
               {item.label}
@@ -70,14 +75,14 @@ export function Navigation() {
         {/* CTA */}
         <button
           onClick={() => scrollTo("contact")}
-          className="hidden md:block text-[11px] font-medium tracking-[0.1em] uppercase bg-coral text-cream px-4 py-2 rounded hover:opacity-85 transition-opacity"
+          className="hidden md:block text-[11px] font-medium tracking-[0.1em] uppercase bg-dark text-amber px-4 py-2 rounded hover:opacity-85 transition-opacity"
         >
           Hire Me
         </button>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-cream/70 hover:text-cream"
+          className="md:hidden text-white/70 hover:text-white"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -105,7 +110,7 @@ export function Navigation() {
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
                 className={`block w-full text-left text-[13px] font-medium tracking-[0.08em] uppercase py-3 border-b border-white/5 last:border-none
-                  ${activeSection === item.id ? "text-amber" : "text-cream/55"}`}
+                  ${activeSection === item.id ? "text-amber" : "text-white/60"}`}
               >
                 {item.label}
               </button>

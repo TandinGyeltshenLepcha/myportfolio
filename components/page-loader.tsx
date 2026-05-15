@@ -85,7 +85,7 @@ export function PageLoader() {
             >
               {/* Rotating outer ring */}
               <motion.div
-                className="absolute -inset-8 border-2 border-coral/30 rounded-full"
+                className="absolute -inset-8 border-2 border-dark/20 rounded-full"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
               />
@@ -127,7 +127,7 @@ export function PageLoader() {
 
             {/* Power bar style loading */}
             <div className="w-64 space-y-2">
-              <div className="h-4 bg-dark border-2 border-coral/50 rounded overflow-hidden relative">
+              <div className="h-4 bg-dark border-2 border-dark/30 rounded overflow-hidden relative">
                 {/* Background pattern */}
                 <div 
                   className="absolute inset-0 opacity-20"
@@ -144,7 +144,7 @@ export function PageLoader() {
                 
                 {/* Progress fill */}
                 <motion.div
-                  className="h-full bg-gradient-to-r from-coral via-amber to-coral relative"
+                  className="h-full bg-amber relative"
                   style={{ width: `${progress}%` }}
                 >
                   {/* Shine effect */}
@@ -176,7 +176,7 @@ export function PageLoader() {
                 >
                   {loadingTexts[textIndex]}
                 </motion.span>
-                <span className="text-xs text-coral font-mono font-bold">
+                <span className="text-xs text-dark font-mono font-bold">
                   {Math.round(progress)}%
                 </span>
               </div>
@@ -196,7 +196,7 @@ export function PageLoader() {
               {["HP", "MP", "XP"].map((stat, i) => (
                 <motion.div
                   key={stat}
-                  className="px-2 py-1 bg-dark border border-coral/30 text-[9px] text-coral/60 tracking-[2px]"
+                  className="px-2 py-1 bg-dark border border-dark/20 text-[9px] text-dark/50 tracking-[2px]"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.2 }}

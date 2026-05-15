@@ -165,7 +165,7 @@ export function CustomCursor() {
             cy="10"
             r="8"
             fill="none"
-            stroke="#E4663D"
+            stroke="#F5C518"
             strokeWidth="1"
             animate={{ 
               r: isHovering ? [8, 10, 8] : 8,
@@ -176,13 +176,13 @@ export function CustomCursor() {
           {/* Star shape */}
           <motion.path
             d="M10 2L11 8L18 10L11 12L10 18L9 12L2 10L9 8Z"
-            fill="#E4663D"
+            fill="#0A0A0A"
             animate={{ 
               fill: isClicking ? "#F7A840" : "#E4663D"
             }}
           />
           {/* Center dot */}
-          <circle cx="10" cy="10" r="2" fill="#fffbe6" />
+          <circle cx="10" cy="10" r="2" fill="#F5C518" />
         </motion.svg>
       </motion.div>
 
@@ -198,8 +198,8 @@ export function CustomCursor() {
             height: isClicking ? 24 : isHovering ? 64 : 40,
             marginLeft: isClicking ? -12 : isHovering ? -32 : -20,
             marginTop: isClicking ? -12 : isHovering ? -32 : -20,
-            borderColor: isHovering ? "#1a0800" : "#E4663D",
-            backgroundColor: isHovering ? "rgba(228,102,61,0.15)" : "rgba(228,102,61,0)",
+            borderColor: isHovering ? "#0A0A0A" : "#F5C518",
+            backgroundColor: isHovering ? "rgba(10,10,10,0.1)" : "rgba(228,102,61,0)",
             rotate: isHovering ? 45 : 0,
             borderRadius: isHovering ? "8px" : "50%"
           }}
@@ -212,7 +212,7 @@ export function CustomCursor() {
         {cursorLabel && (
           <motion.div
             key="cursor-label"
-            className="fixed pointer-events-none z-[9997] font-sans text-[10px] font-bold tracking-[2px] uppercase bg-dark text-coral px-3 py-1.5 border border-coral/40"
+            className="fixed pointer-events-none z-[9997] font-sans text-[10px] font-bold tracking-[2px] uppercase bg-dark text-amber px-3 py-1.5 border border-amber/40"
             initial={{ opacity: 0, scale: 0.8, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
@@ -242,7 +242,7 @@ export function CustomCursor() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="w-8 h-8 -ml-4 -mt-4 rounded-full border-2 border-coral" />
+            <div className="w-8 h-8 -ml-4 -mt-4 rounded-full border-2 border-amber" />
           </motion.div>
         )}
       </AnimatePresence>

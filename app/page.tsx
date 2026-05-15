@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { CustomCursor } from "@/components/custom-cursor"
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
@@ -21,27 +21,39 @@ export default function Home() {
     return false
   })
 
-  // Scroll achievement
+  // Refs to ensure each achievement fires at most once per session
+  const hasScrolledRef = useRef(false)
+  const hasReachedBottomRef = useRef(false)
+  const hasWelcomedRef = useRef(false)
+
   useEffect(() => {
     if (!gameStarted) return
-    let hasScrolled = false
+
+    // Welcome achievement — fires once
+    if (!hasWelcomedRef.current) {
+      hasWelcomedRef.current = true
+      const timer = setTimeout(() => unlock("Welcome", "Thanks for visiting!", "[HI]"), 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [unlock, gameStarted])
+
+  useEffect(() => {
+    if (!gameStarted) return
     const handleScroll = () => {
-      if (!hasScrolled && window.scrollY > 500) {
-        hasScrolled = true
+      if (!hasScrolledRef.current && window.scrollY > 500) {
+        hasScrolledRef.current = true
         unlock("Explorer", "Started scrolling the page", "[MAP]")
       }
-      if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 100) {
+      if (
+        !hasReachedBottomRef.current &&
+        window.scrollY + window.innerHeight >= document.body.scrollHeight - 100
+      ) {
+        hasReachedBottomRef.current = true
         unlock("Completionist", "Reached the bottom!", "[+++]")
       }
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [unlock, gameStarted])
-
-  useEffect(() => {
-    if (!gameStarted) return
-    const timer = setTimeout(() => unlock("Welcome", "Thanks for visiting!", "[HI]"), 3000)
-    return () => clearTimeout(timer)
   }, [unlock, gameStarted])
 
   const handleGameStart = () => {
@@ -51,7 +63,7 @@ export default function Home() {
 
   return (
     <>
-      <GameStartScreen onStart={handleGameStart} />
+      {!gameStarted && <GameStartScreen onStart={handleGameStart} />}
 
       {gameStarted && (
         <>

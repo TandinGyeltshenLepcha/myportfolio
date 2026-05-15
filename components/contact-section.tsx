@@ -47,36 +47,21 @@ export function ContactSection() {
             </p>
 
             <div className="space-y-3">
-              <a
-                href="mailto:tandingyeltshenlepcha@gmail.com"
-                className="flex items-center gap-3 group"
-              >
-                <div className="w-9 h-9 rounded-md border border-white/10 flex items-center justify-center group-hover:border-cream/25 transition-all">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,251,230,0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-cream/70 transition-colors">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-                  </svg>
+              {[
+                { icon: "✉", label: "Email", value: "hello@gameui.design" },
+                { icon: "⬡", label: "GitHub", value: "github.com/gameui" },
+                { icon: "◈", label: "Dribbble", value: "dribbble.com/gameui" },
+              ].map((link) => (
+                <div key={link.label} className="flex items-center gap-3 group cursor-pointer">
+                  <div className="w-9 h-9 rounded-md border border-white/10 flex items-center justify-center text-cream/40 text-[14px] group-hover:border-cream/25 group-hover:text-cream/70 transition-all">
+                    {link.icon}
+                  </div>
+                  <div>
+                    <div className="text-[10px] tracking-[0.12em] uppercase text-cream/30">{link.label}</div>
+                    <div className="text-[13px] text-cream/55 group-hover:text-cream/80 transition-colors">{link.value}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-[10px] tracking-[0.12em] uppercase text-cream/30">Email</div>
-                  <div className="text-[13px] text-cream/55 group-hover:text-cream/80 transition-colors">tandingyeltshenlepcha@gmail.com</div>
-                </div>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/tandingyeltshenlepcha/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 group"
-              >
-                <div className="w-9 h-9 rounded-md border border-white/10 flex items-center justify-center group-hover:border-cream/25 transition-all">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,251,230,0.4)" className="group-hover:fill-cream/70 transition-colors">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-[10px] tracking-[0.12em] uppercase text-cream/30">LinkedIn</div>
-                  <div className="text-[13px] text-cream/55 group-hover:text-cream/80 transition-colors">tandingyeltshenlepcha</div>
-                </div>
-              </a>
+              ))}
             </div>
           </motion.div>
 

@@ -72,7 +72,7 @@ function SparkBurst({ x, y }: { x: number; y: number }) {
       {particles.map((particle, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-coral"
+          className="absolute rounded-full bg-amber"
           style={{
             left: x,
             top: y,
@@ -180,7 +180,7 @@ export function AchievementPopups({ achievements }: { achievements: Achievement[
         {achievements.map(achievement => (
           <motion.div
             key={achievement.id}
-            className="bg-dark text-cream px-4 py-3 rounded border-l-4 border-coral shadow-lg flex items-center gap-3 min-w-[280px]"
+            className="bg-dark text-cream px-4 py-3 rounded border-l-4 border-amber shadow-lg flex items-center gap-3 min-w-[280px]"
             initial={{ x: 300, opacity: 0, scale: 0.8 }}
             animate={{ x: 0, opacity: 1, scale: 1 }}
             exit={{ x: 300, opacity: 0, scale: 0.8 }}
@@ -188,13 +188,13 @@ export function AchievementPopups({ achievements }: { achievements: Achievement[
           >
             <span className="text-2xl">{achievement.icon}</span>
             <div>
-              <div className="text-[10px] tracking-[2px] uppercase text-coral mb-0.5">Achievement Unlocked</div>
+              <div className="text-[10px] tracking-[2px] uppercase text-amber mb-0.5">Achievement Unlocked</div>
               <div className="font-serif font-bold text-sm">{achievement.title}</div>
               <div className="text-xs text-cream/60">{achievement.description}</div>
             </div>
             {/* XP bar animation */}
             <motion.div 
-              className="absolute bottom-0 left-0 h-0.5 bg-coral/50"
+              className="absolute bottom-0 left-0 h-0.5 bg-amber/50"
               initial={{ width: "100%" }}
               animate={{ width: "0%" }}
               transition={{ duration: 4, ease: "linear" }}
@@ -354,9 +354,9 @@ export function SkillNode({
     <motion.button
       className={`relative w-14 h-14 rounded-full border-2 flex items-center justify-center
         ${unlocked 
-          ? "border-coral text-cream shadow-[0_0_20px_rgba(228,102,61,0.5)]" 
+          ? "border-amber text-cream shadow-[0_0_20px_rgba(228,102,61,0.5)]" 
           : inProgress 
-            ? "bg-dark/30 border-coral/50 text-coral/70 overflow-hidden"
+            ? "bg-dark/30 border-amber/50 text-dark/70 overflow-hidden"
             : "bg-dark/20 border-brown/40 text-brown/40 overflow-hidden"
         }`}
       style={unlocked ? { backgroundColor: color || "#E4663D" } : undefined}
@@ -368,7 +368,7 @@ export function SkillNode({
       {iconElement}
       {unlocked && (
         <motion.div
-          className="absolute inset-0 rounded-full border-2 border-coral"
+          className="absolute inset-0 rounded-full border-2 border-amber"
           animate={{ scale: [1, 1.2, 1], opacity: [1, 0, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
@@ -414,7 +414,7 @@ export function SkillNode({
           />
           {/* XP text */}
           <motion.div
-            className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[8px] text-coral font-bold whitespace-nowrap"
+            className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[8px] text-dark font-bold whitespace-nowrap"
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
@@ -462,7 +462,7 @@ export function ComboCounter({ count }: { count: number }) {
           animate={{ x: 0, opacity: 1, scale: 1 }}
           exit={{ x: -50, opacity: 0, scale: 1.5 }}
         >
-          <div className="font-serif text-6xl font-black text-coral drop-shadow-lg">
+          <div className="font-serif text-6xl font-black text-dark drop-shadow-lg">
             {count}x
           </div>
           <div className="text-xs tracking-[4px] uppercase text-dark/60">Combo</div>
@@ -481,7 +481,7 @@ export function SoundWave({ className = "" }: { className?: string }) {
       {Array.from({ length: bars }).map((_, i) => (
         <motion.div
           key={i}
-          className="w-1 bg-coral/60 rounded-t"
+          className="w-1 bg-amber/60 rounded-t"
           animate={{
             height: [8, 20 + Math.random() * 12, 8],
           }}
@@ -554,7 +554,7 @@ export function DamageNumber({
 }) {
   return (
     <motion.div
-      className={`fixed pointer-events-none font-serif font-black ${critical ? "text-coral text-3xl" : "text-dark text-xl"}`}
+      className={`fixed pointer-events-none font-serif font-black ${critical ? "text-dark text-3xl" : "text-dark text-xl"}`}
       style={{ left: x, top: y }}
       initial={{ opacity: 1, y: 0, scale: critical ? 1.5 : 1 }}
       animate={{ opacity: 0, y: -50, scale: critical ? 2 : 1.2 }}
@@ -572,7 +572,7 @@ export function GameSpinner() {
   return (
     <div className="relative w-12 h-12">
       <motion.div
-        className="absolute inset-0 border-3 border-coral/30 rounded-full"
+        className="absolute inset-0 border-3 border-amber/30 rounded-full"
       />
       <motion.div
         className="absolute inset-0 border-3 border-transparent border-t-coral rounded-full"
@@ -624,7 +624,7 @@ export function GameTooltip({
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.15 }}
           >
-            <span className="bg-dark text-cream text-xs px-3 py-2 rounded border border-coral/40 shadow-lg whitespace-nowrap block">
+            <span className="bg-dark text-cream text-xs px-3 py-2 rounded border border-amber/40 shadow-lg whitespace-nowrap block">
               {content}
             </span>
           </motion.span>
@@ -642,7 +642,7 @@ export function KeyboardKey({ char, pressed = false }: { char: string; pressed?:
       className={`inline-flex items-center justify-center h-7 rounded border-2 font-mono text-[10px] font-bold
         ${isLongKey ? "px-2 min-w-[45px]" : "w-7"}
         ${pressed 
-          ? "bg-coral border-coral text-cream translate-y-0.5" 
+          ? "bg-amber border-amber text-cream translate-y-0.5" 
           : "bg-cream border-brown/40 text-dark shadow-[0_2px_0_#7a3c00]"
         }`}
       animate={pressed ? { y: 2, boxShadow: "none" } : { y: 0 }}
@@ -669,7 +669,7 @@ export function LevelBadge({ level }: { level: number }) {
       </svg>
       <span className="relative font-serif font-black text-cream text-lg">{level}</span>
       <motion.div
-        className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-coral text-cream text-[8px] font-bold flex items-center justify-center"
+        className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-amber text-cream text-[8px] font-bold flex items-center justify-center"
         animate={{ scale: [1, 1.2, 1] }}
         transition={{ duration: 1, repeat: Infinity }}
       >

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import { motion, useInView, useScroll, useTransform } from "framer-motion"
-import { WavesSvg, HealthBarsSvg, SettingsButtonsSvg } from "./svg-components"
+import { HealthBarsSvg, SettingsButtonsSvg, LifeTokensSvg } from "./svg-components"
 
 const words = ["Game UI", "HUD Systems", "Components", "Interfaces"]
 
@@ -49,7 +49,7 @@ export function HeroSection() {
       <div
         className="absolute inset-0 opacity-[0.035]"
         style={{
-          backgroundImage: `linear-gradient(rgba(26,8,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(26,8,0,0.6) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(10,10,10,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.6) 1px, transparent 1px)`,
           backgroundSize: "48px 48px",
         }}
       />
@@ -66,11 +66,11 @@ export function HeroSection() {
           transition={{ duration: 0.6 }}
         >
           <motion.span
-            className="w-[6px] h-[6px] rounded-full bg-coral"
+            className="w-[6px] h-[6px] rounded-full bg-dark"
             animate={{ opacity: [1, 0.4, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          <span className="text-[11px] font-medium tracking-[0.15em] uppercase text-coral">
+          <span className="text-[11px] font-medium tracking-[0.15em] uppercase text-dark">
             Available for projects
           </span>
         </motion.div>
@@ -86,10 +86,10 @@ export function HeroSection() {
               transition={{ duration: 0.7, delay: 0.1 }}
             >
               Designing<br />
-              <span className="text-coral italic">
+              <span className="text-white italic" style={{ WebkitTextStroke: "1px #0A0A0A" }}>
                 {typedText}
                 <motion.span
-                  className="inline-block w-[3px] h-[0.9em] bg-coral ml-1 align-middle"
+                  className="inline-block w-[3px] h-[0.9em] bg-dark ml-1 align-middle"
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
                 />
@@ -99,7 +99,7 @@ export function HeroSection() {
             </motion.h1>
 
             <motion.p
-              className="text-[17px] text-muted leading-[1.75] max-w-[460px] mb-8 font-light"
+              className="text-[17px] text-dark/70 leading-[1.75] max-w-[460px] mb-8 font-light"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.35 }}
@@ -115,9 +115,9 @@ export function HeroSection() {
             >
               <motion.button
                 onClick={scrollToWork}
-                className="relative flex items-center gap-2 px-7 py-3.5 rounded bg-dark text-cream text-[12px] font-medium tracking-[0.1em] uppercase overflow-hidden"
-                style={{ boxShadow: "4px 4px 0 #C94A26" }}
-                whileHover={{ x: -2, y: -2, boxShadow: "6px 6px 0 #C94A26" }}
+                className="relative flex items-center gap-2 px-7 py-3.5 rounded bg-dark text-amber text-[12px] font-medium tracking-[0.1em] uppercase overflow-hidden"
+                style={{ boxShadow: "4px 4px 0 rgba(10,10,10,0.3)" }}
+                whileHover={{ x: -2, y: -2, boxShadow: "6px 6px 0 rgba(10,10,10,0.3)" }}
                 whileTap={{ scale: 0.97 }}
               >
                 See the Work
@@ -133,7 +133,7 @@ export function HeroSection() {
               <motion.button
                 onClick={scrollToContact}
                 className="px-7 py-3.5 rounded border-2 border-dark text-dark text-[12px] font-medium tracking-[0.1em] uppercase"
-                whileHover={{ backgroundColor: "#1a0800", color: "#fffbe6" }}
+                whileHover={{ backgroundColor: "#0A0A0A", color: "#F5C518" }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.2 }}
               >
@@ -142,16 +142,16 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: floating cards - desktop only */}
+          {/* Right: floating cards with actual SVG graphics */}
           <div className="relative h-[420px] hidden lg:block">
             <FloatingCard
               className="top-0 left-[5%]"
               delay={0.4}
               rotation={-2}
-              shadowColor="rgba(201,74,38,0.7)"
+              shadowColor="rgba(10,10,10,0.25)"
             >
-              <div className="bg-cream p-3 w-[260px]">
-                <div className="text-[9px] tracking-[3px] uppercase text-muted font-sans mb-2">Status Bars</div>
+              <div className="bg-white p-3 w-[260px]">
+                <div className="text-[9px] tracking-[3px] uppercase text-dark/40 font-sans mb-2">Status Bars</div>
                 <HealthBarsSvg />
               </div>
             </FloatingCard>
@@ -160,10 +160,10 @@ export function HeroSection() {
               className="top-[40px] right-0"
               delay={0.6}
               rotation={2}
-              shadowColor="rgba(26,8,0,0.5)"
+              shadowColor="rgba(10,10,10,0.2)"
             >
-              <div className="bg-cream p-3 w-[190px]">
-                <div className="text-[9px] tracking-[3px] uppercase text-muted font-sans mb-2">Settings Menu</div>
+              <div className="bg-white p-3 w-[190px]">
+                <div className="text-[9px] tracking-[3px] uppercase text-dark/40 font-sans mb-2">Settings Menu</div>
                 <SettingsButtonsSvg />
               </div>
             </FloatingCard>
@@ -172,22 +172,18 @@ export function HeroSection() {
               className="bottom-[30px] left-[3%]"
               delay={0.8}
               rotation={-1}
-              shadowColor="rgba(45,74,66,0.6)"
+              shadowColor="rgba(10,10,10,0.2)"
             >
-              <div className="bg-cream p-3 w-[200px]">
-                <div className="text-[9px] tracking-[3px] uppercase text-muted font-sans mb-2">Rock Paper Scissors</div>
-                <div className="flex justify-center items-center gap-3 py-2">
-                  <motion.img src="/icons/rock.svg" alt="Rock" className="w-12 h-12 object-contain" animate={{ y: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0 }} />
-                  <motion.img src="/icons/paper.svg" alt="Paper" className="w-12 h-12 object-contain" animate={{ y: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.3 }} />
-                  <motion.img src="/icons/scissors.svg" alt="Scissors" className="w-12 h-12 object-contain" animate={{ y: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.6 }} />
-                </div>
+              <div className="bg-white p-3 w-[210px]">
+                <div className="text-[9px] tracking-[3px] uppercase text-dark/40 font-sans mb-2">Rock Paper Scissors</div>
+                <LifeTokensSvg />
               </div>
             </FloatingCard>
           </div>
         </div>
       </motion.div>
 
-      {/* Stats strip */}
+      {/* Stats strip — no "100% Gamified" */}
       <StatStrip />
 
       {/* Scroll indicator */}
@@ -197,14 +193,14 @@ export function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        <span className="text-[10px] tracking-[3px] uppercase text-brown/50">Scroll</span>
+        <span className="text-[10px] tracking-[3px] uppercase text-dark/40">Scroll</span>
         <motion.div
-          className="w-5 h-8 rounded-full border border-brown/30 flex justify-center pt-1.5"
+          className="w-5 h-8 rounded-full border border-dark/25 flex justify-center pt-1.5"
           animate={{ y: [0, 4, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
           <motion.div
-            className="w-1 h-1 rounded-full bg-coral"
+            className="w-1 h-1 rounded-full bg-dark"
             animate={{ y: [0, 10, 0], opacity: [1, 0.3, 1] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />
@@ -238,17 +234,17 @@ function FloatingCard({ children, className, delay, rotation, shadowColor }: {
 function StatStrip() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-80px" })
+  // Removed "100% Gamified"
   const stats = [
     { target: 40, label: "Components", suffix: "+" },
     { target: 3, label: "Game Projects", suffix: "" },
     { target: 3, label: "Years Exp", suffix: "" },
-    { value: "100%", label: "Gamified" },
   ]
 
   return (
     <motion.div
       ref={ref}
-      className="border-t border-brown/15 grid grid-cols-2 md:grid-cols-4 relative z-10"
+      className="border-t border-dark/10 grid grid-cols-3 relative z-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.9 }}
@@ -256,16 +252,16 @@ function StatStrip() {
       {stats.map((stat, i) => (
         <motion.div
           key={i}
-          className="text-center py-6 border-r border-brown/10 last:border-r-0 relative"
+          className="text-center py-6 border-r border-dark/10 last:border-r-0 relative"
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: i * 0.08 }}
-          whileHover={{ backgroundColor: "rgba(201,74,38,0.04)" }}
+          whileHover={{ backgroundColor: "rgba(10,10,10,0.04)" }}
         >
           <div className="font-serif text-[clamp(24px,2.8vw,38px)] font-black text-dark">
-            {stat.value ? stat.value : <Counter target={stat.target!} suffix={stat.suffix || ""} isInView={isInView} />}
+            <Counter target={stat.target} suffix={stat.suffix} isInView={isInView} />
           </div>
-          <div className="text-[10px] text-muted tracking-[0.2em] uppercase mt-1">{stat.label}</div>
+          <div className="text-[10px] text-dark/50 tracking-[0.2em] uppercase mt-1">{stat.label}</div>
         </motion.div>
       ))}
     </motion.div>

@@ -222,7 +222,7 @@ export default function ProjectPage() {
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('gameStarted', 'true')
     }
-    router.push('/#work')
+    router.push('/')
   }
   
   if (!project || !details) {

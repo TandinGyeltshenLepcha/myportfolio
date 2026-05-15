@@ -4,24 +4,26 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --amber: #E89820;
-  --coral: #C94A26;
-  --cream: #fffbe6;
-  --brown: #5C2D00;
-  --dark: #1a0800;
-  --teal: #2D4A42;
-  --sand: #d4b896;
-  --muted: #6B4A2A;
+  --amber: #F5C518;
+  --amber-light: #FFF3A3;
+  --amber-dark: #C49A00;
+  --coral: #C49A00;
+  --cream: #FFFFFF;
+  --brown: #7A6A00;
+  --dark: #0A0A0A;
+  --teal: #1E3D36;
+  --sand: #E8D88A;
+  --muted: #5A4E00;
 
-  --background: #E89820;
-  --foreground: #1a0800;
-  --card: #fffbe6;
-  --card-foreground: #1a0800;
-  --primary: #C94A26;
-  --primary-foreground: #fffbe6;
-  --secondary: #2D4A42;
-  --secondary-foreground: #fffbe6;
-  --muted-color: #6B4A2A;
+  --background: #F5C518;
+  --foreground: #0A0A0A;
+  --card: #FFFFFF;
+  --card-foreground: #0A0A0A;
+  --primary: #C49A00;
+  --primary-foreground: #FFFFFF;
+  --secondary: #0A0A0A;
+  --secondary-foreground: #FFFFFF;
+  --muted-color: #5A4E00;
   --radius: 0.25rem;
 }
 
@@ -44,6 +46,7 @@
   --color-dark: var(--dark);
   --color-teal: var(--teal);
   --color-sand: var(--sand);
+  --color-muted: var(--muted);
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
@@ -63,7 +66,6 @@ body {
   cursor: none !important;
 }
 
-/* Improved typography */
 h1, h2, h3 {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -73,14 +75,12 @@ p {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Better focus outline */
 :focus-visible {
-  outline: 2px solid var(--coral);
+  outline: 2px solid var(--dark);
   outline-offset: 3px;
   border-radius: 3px;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -88,18 +88,16 @@ p {
   background: var(--dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--coral);
+  background: var(--amber);
   border-radius: 2px;
 }
 
-/* Mobile readability improvements */
 @media (max-width: 768px) {
   html {
     font-size: 15px;
   }
 }
 
-/* Improved section padding on mobile */
 @media (max-width: 640px) {
   .section-inner {
     padding-left: 1.25rem;

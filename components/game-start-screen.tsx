@@ -101,6 +101,16 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
     setPressedKey(null)
   }, [])
 
+  // Mouse click anywhere on loading screen triggers start
+  const handleScreenClick = useCallback(() => {
+    if (!isLoaded) return
+    setIsGlitching(true)
+    setTimeout(() => {
+      setIsVisible(false)
+      setTimeout(onStart, 600)
+    }, 400)
+  }, [isLoaded, onStart])
+
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown)
     window.addEventListener("keyup", handleKeyUp)
@@ -124,6 +134,8 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
       {isVisible && (
         <motion.div
           className="fixed inset-0 z-[10000] bg-dark flex items-center justify-center overflow-hidden"
+          onClick={handleScreenClick}
+          style={{ cursor: isLoaded ? "pointer" : "wait" }}
           exit={{
             opacity: 0,
             scale: 1.1,
@@ -190,7 +202,7 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
             >
               <div
-                className="w-full h-full border-2 border-coral/40"
+                className="w-full h-full border-2 border-amber/40"
                 style={{
                   transformStyle: "preserve-3d",
                   transform: "rotateX(45deg) rotateZ(45deg)",
@@ -305,7 +317,7 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
           <div className="relative z-10 flex flex-col items-center gap-8">
             {/* Boot console */}
             <motion.div
-              className="absolute -top-48 left-1/2 -translate-x-1/2 w-[400px] h-32 bg-dark/80 border border-coral/20 rounded p-3 overflow-hidden font-mono text-[10px] text-coral/60"
+              className="absolute -top-48 left-1/2 -translate-x-1/2 w-[400px] h-32 bg-dark/80 border border-amber/20 rounded p-3 overflow-hidden font-mono text-[10px] text-amber/60"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -341,7 +353,7 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
             >
               {/* Glowing rings */}
               <motion.div
-                className="absolute -inset-16 border border-coral/20 rounded-full"
+                className="absolute -inset-16 border border-amber/20 rounded-full"
                 animate={{ rotate: 360, scale: [1, 1.1, 1] }}
                 transition={{ rotate: { duration: 20, repeat: Infinity, ease: "linear" }, scale: { duration: 3, repeat: Infinity } }}
               />
@@ -414,9 +426,9 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <div className="h-3 bg-dark border-2 border-coral/40 rounded overflow-hidden relative">
+              <div className="h-3 bg-dark border-2 border-amber/40 rounded overflow-hidden relative">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-coral via-amber to-coral relative"
+                  className="h-full bg-amber relative"
                   style={{ width: `${Math.min(loadProgress, 100)}%` }}
                 >
                   <motion.div
@@ -451,7 +463,7 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
                     onClick={handleStart}
                     onMouseEnter={() => setHoverStart(true)}
                     onMouseLeave={() => setHoverStart(false)}
-                    className="relative px-16 py-5 bg-coral text-cream font-sans text-sm font-bold tracking-[4px] uppercase overflow-hidden group"
+                    className="relative px-16 py-5 bg-dark text-amber font-sans text-sm font-bold tracking-[4px] uppercase overflow-hidden group"
                     style={{
                       clipPath: "polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)",
                     }}
@@ -552,7 +564,7 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
             {["HP", "MP", "XP"].map((stat, i) => (
               <motion.div
                 key={stat}
-                className="px-2 py-1 bg-dark border border-coral/30 text-[9px] text-coral/60 tracking-[2px]"
+                className="px-2 py-1 bg-dark border border-amber/30 text-[9px] text-amber/60 tracking-[2px]"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 + i * 0.1 }}
