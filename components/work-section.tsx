@@ -17,7 +17,7 @@ const projects = [
     thumbBg: "linear-gradient(135deg, #0f2820 0%, #1E3D36 100%)",
     accent: "#f8aa40",
     featured: true,
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-03-05%20131454-e0vTj9ZkLpZ7xRz9jX5Q6g3fJ7w5Y7.png",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20220608-2Y3Yl6zS6fL7xRz9jX5Q6g3fJ7w5Y7.png",
     code: "OBJ_01"
   },
   {
@@ -192,7 +192,7 @@ function ProjectCard({ project, className = "" }: { project: any; className?: st
             <img 
               src={project.image} 
               alt={project.title}
-              className="absolute inset-0 w-full h-full object-contain p-8 transition-transform duration-700 group-hover:scale-110"
+              className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
               style={{ transform: "translateZ(20px)" }}
             />
             
