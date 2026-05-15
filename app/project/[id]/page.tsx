@@ -304,27 +304,23 @@ export default function ProjectPage() {
       </motion.div>
 
       {/* Hero Image */}
-      {(details.images.length > 0 || details.uiAssets) && (
+      {details.images && details.images.length > 0 && (
         <motion.div
           className="w-full max-w-5xl mx-auto px-6 pt-12"
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-4 border-dark/10 shadow-2xl bg-dark/5">
-            {details.images.length > 0 ? (
-              <img 
-                src={details.images[0]} 
-                alt={`${project.title} hero`}
-                className="w-full h-full object-contain"
-              />
-            ) : details.uiAssets?.rockPaperScissors ? (
-              <img 
-                src={details.uiAssets.rockPaperScissors} 
-                alt={`${project.title} hero`}
-                className="w-full h-full object-contain"
-              />
-            ) : null}
+          <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-4 border-dark/10 shadow-2xl bg-white">
+            <img 
+              src={details.images[0]} 
+              alt={`${project.title} hero`}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://via.placeholder.com/1200x675?text=Image+Not+Found";
+              }}
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent pointer-events-none" />
           </div>
         </motion.div>

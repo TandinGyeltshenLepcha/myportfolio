@@ -153,7 +153,8 @@ function ProjectCard({ project, className = "" }: { project: any; className?: st
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`group relative perspective-1000 ${className}`}
+      className={`group relative ${className}`}
+      style={{ perspective: "1000px" }}
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -161,30 +162,31 @@ function ProjectCard({ project, className = "" }: { project: any; className?: st
     >
       <motion.div
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="bg-white border border-dark/10 overflow-hidden cursor-pointer transition-shadow duration-500 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+        className="bg-white border border-dark/10 cursor-pointer transition-shadow duration-500 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
       >
         <div className={`grid ${project.featured ? "md:grid-cols-2" : "grid-cols-1"}`}>
           {/* Thumbnail with HUD elements */}
-          <div className={`relative overflow-hidden bg-dark/5 ${project.featured ? "aspect-square md:aspect-auto" : "aspect-video"}`}>
+          <div className={`relative bg-dark/5 ${project.featured ? "aspect-square md:aspect-auto" : "aspect-video"}`}>
             {/* HUD Brackets */}
             <div className="absolute inset-4 pointer-events-none z-20 transition-opacity duration-300 group-hover:opacity-100 opacity-40">
-              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-coral" />
-              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-coral" />
-              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-coral" />
-              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-coral" />
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-coral" style={{ borderColor: "#f8aa40" }} />
+              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-coral" style={{ borderColor: "#f8aa40" }} />
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-coral" style={{ borderColor: "#f8aa40" }} />
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-coral" style={{ borderColor: "#f8aa40" }} />
             </div>
 
             {/* Scanning Line */}
             <motion.div 
               className="absolute left-0 right-0 h-[2px] bg-coral/30 z-10 pointer-events-none"
+              style={{ backgroundColor: "rgba(248, 170, 64, 0.3)" }}
               animate={{ top: ["0%", "100%", "0%"] }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             />
 
             {/* Technical Metadata */}
-            <div className="absolute bottom-6 left-6 z-20 font-mono text-[8px] text-coral/60 uppercase tracking-widest pointer-events-none">
+            <div className="absolute bottom-6 left-6 z-20 font-mono text-[8px] uppercase tracking-widest pointer-events-none" style={{ color: "#f8aa40" }}>
               <div className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-coral rounded-full animate-pulse" />
+                <span className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: "#f8aa40" }} />
                 {project.code} // STABLE_DATA
               </div>
             </div>
@@ -193,17 +195,21 @@ function ProjectCard({ project, className = "" }: { project: any; className?: st
               src={project.image} 
               alt={project.title}
               className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
-              style={{ transform: "translateZ(20px)" }}
+              style={{ transform: "translateZ(30px)" }}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://via.placeholder.com/800x600?text=Image+Not+Found";
+              }}
             />
             
             <div
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{ background: `radial-gradient(circle at center, ${project.accent}10 0%, transparent 70%)` }}
+              style={{ background: `radial-gradient(circle at center, ${project.accent}15 0%, transparent 70%)` }}
             />
           </div>
 
           {/* Body */}
-          <div className="p-8 flex flex-col justify-between" style={{ transform: "translateZ(40px)" }}>
+          <div className="p-8 flex flex-col justify-between" style={{ transform: "translateZ(50px)" }}>
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span
