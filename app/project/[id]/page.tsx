@@ -101,7 +101,7 @@ const projectDetails: Record<string, {
       "Improved my ability to combine interaction design with user experience, rather than treating them separately.",
       "Realized that websites can go beyond information delivery and become engaging, interactive environments."
     ],
-    images: [],
+    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20220608-2Y3Yl6zS6fL7xRz9jX5Q6g3fJ7w5Y7.png"],
     uiAssets: {
       rockPaperScissors: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20131-X1orlNZH6vdbq6cmmKCyEf0vDgRsq6.png",
       settingsMenuOrange: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%2016-AXt0PZSTE8Yk521N0gbA1FAfKUAqSq.png",

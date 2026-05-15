@@ -17,6 +17,7 @@ const projects = [
     thumbBg: "linear-gradient(135deg, #0f2820 0%, #1E3D36 100%)",
     accent: "#27ae60",
     featured: true,
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-17%20220608-2Y3Yl6zS6fL7xRz9jX5Q6g3fJ7w5Y7.png"
   },
   {
     id: "hephaestus-gun",
@@ -30,6 +31,7 @@ const projects = [
     thumbBg: "linear-gradient(135deg, #2d1000 0%, #5a2a00 100%)",
     accent: "#c0652b",
     featured: false,
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Digitalization%20with%20description-chIb4H7RVY0KXCWqqQT5lS0H4Zibmg.png"
   },
   {
     id: "card-battles",
@@ -43,6 +45,7 @@ const projects = [
     thumbBg: "linear-gradient(135deg, #160018 0%, #350040 100%)",
     accent: "#b03030",
     featured: false,
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Property%201%3DGame%20Battle%20Screen%20%28Forest%29%20%281%29%201-WjjGm5aDKTq0ULcHiUrd4s5Z0v0TeR.png"
   },
 ]
 
@@ -116,7 +119,11 @@ export function WorkSection() {
                   className="h-56 md:h-auto min-h-[200px] flex items-center justify-center relative overflow-hidden"
                   style={{ background: project.thumbBg }}
                 >
-                  <ProjectIcon projectId={project.id} accent={project.accent} large />
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{ background: `radial-gradient(circle at center, ${project.accent}20 0%, transparent 70%)` }}
@@ -174,7 +181,11 @@ export function WorkSection() {
                 className="h-48 flex items-center justify-center relative overflow-hidden"
                 style={{ background: project.thumbBg }}
               >
-                <ProjectIcon projectId={project.id} accent={project.accent} />
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
                   style={{ background: `radial-gradient(circle at center, ${project.accent}20 0%, transparent 70%)` }}

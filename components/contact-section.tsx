@@ -50,7 +50,6 @@ export function ContactSection() {
               {[
                 { icon: "✉", label: "Email", value: "tandingyeltshenlepcha@gmail.com", href: "mailto:tandingyeltshenlepcha@gmail.com" },
                 { icon: "⬡", label: "LinkedIn", value: "linkedin.com/in/tandingyeltshenlepcha", href: "https://www.linkedin.com/in/tandingyeltshenlepcha" },
-                { icon: "◈", label: "Dribbble", value: "dribbble.com/gameui", href: "https://dribbble.com/gameui" },
               ].map((link) => (
                 <a 
                   key={link.label} 
