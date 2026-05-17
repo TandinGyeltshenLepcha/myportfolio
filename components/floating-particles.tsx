@@ -105,11 +105,11 @@ export function FloatingParticles() {
             width: icon.size,
             height: icon.size,
           }}
-          initial={{ opacity: 0.08 }}
+          initial={{ opacity: 0.15 }}
           animate={{
             y: [0, -80, 0],
             x: [0, icon.xOffset, 0],
-            opacity: [0.08, 0.18, 0.08],
+            opacity: [0.15, 0.35, 0.15],
             rotate: [icon.rotation, icon.rotation + 360, icon.rotation],
             scale: [1, 1.15, 1],
           }}

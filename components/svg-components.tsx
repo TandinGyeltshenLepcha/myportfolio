@@ -131,10 +131,10 @@ export function LifeTokensSvg() {
         whileHover={{ scale: 1.1, rotate: 5 }}
         transition={{ type: "spring", stiffness: 400 }}
       >
-        <rect x="0.007" y="11.2" width="120" height="109.9" rx="54.95" fill="#9C27B0" />
-        <path d="M50.938 16.408L83.434 1.964C83.769 1.815 84.113 1.696 84.458 1.583C81.963.765 79.169.884 76.715 1.969L44.22 16.413C41.084 17.826 39.082 20.755 39.084 23.946L39.124 77L45.842 76.995L45.803 23.942C45.8 20.75 47.802 17.821 50.938 16.408Z" fill="white" />
-        <rect x="29.983" y="76.545" width="56.446" height="21.732" rx="3.716" fill="white" stroke="#231F20" strokeWidth="1.858" />
-        <rect x="36.337" y="77.469" width="49.164" height="19.875" rx="2.322" fill="#66CC99" />
+        <rect x="0.007" y="11.2" width="120" height="109.9" rx="54.95" fill="#000000" />
+        <path d="M50.938 16.408L83.434 1.964C83.769 1.815 84.113 1.696 84.458 1.583C81.963.765 79.169.884 76.715 1.969L44.22 16.413C41.084 17.826 39.082 20.755 39.084 23.946L39.124 77L45.842 76.995L45.803 23.942C45.8 20.75 47.802 17.821 50.938 16.408Z" fill="#F8AA40" />
+        <rect x="29.983" y="76.545" width="56.446" height="21.732" rx="3.716" fill="#F8AA40" stroke="#000000" strokeWidth="1.858" />
+        <rect x="36.337" y="77.469" width="49.164" height="19.875" rx="2.322" fill="#000000" />
       </motion.svg>
       
       {/* Paper */}
@@ -145,9 +145,9 @@ export function LifeTokensSvg() {
         whileHover={{ scale: 1.1, rotate: -5 }}
         transition={{ type: "spring", stiffness: 400 }}
       >
-        <rect x=".028" y="38.16" width="120" height="111.164" rx="55.582" fill="#9C27B0" />
-        <rect x="32.027" y="106.621" width="56.446" height="21.96" rx="3.716" fill="white" stroke="#231F20" strokeWidth="1.858" />
-        <rect x="38.381" y="107.543" width="49.164" height="20.102" rx="2.322" fill="#66CC99" />
+        <rect x=".028" y="38.16" width="120" height="111.164" rx="55.582" fill="#000000" />
+        <rect x="32.027" y="106.621" width="56.446" height="21.96" rx="3.716" fill="#F8AA40" stroke="#000000" strokeWidth="1.858" />
+        <rect x="38.381" y="107.543" width="49.164" height="20.102" rx="2.322" fill="#000000" />
       </motion.svg>
       
       {/* Scissors */}
@@ -158,9 +158,9 @@ export function LifeTokensSvg() {
         whileHover={{ scale: 1.1, rotate: 5 }}
         transition={{ type: "spring", stiffness: 400 }}
       >
-        <rect x=".027" y="36.205" width="120" height="101.878" rx="50.939" fill="#9C27B0" />
-        <rect x="29.293" y="97.007" width="56.446" height="20.28" rx="3.716" fill="white" stroke="#231F20" strokeWidth="1.858" />
-        <rect x="35.648" y="97.932" width="49.164" height="18.423" rx="2.322" fill="#66CC99" />
+        <rect x=".027" y="36.205" width="120" height="101.878" rx="50.939" fill="#000000" />
+        <rect x="29.293" y="97.007" width="56.446" height="20.28" rx="3.716" fill="#F8AA40" stroke="#000000" strokeWidth="1.858" />
+        <rect x="35.648" y="97.932" width="49.164" height="18.423" rx="2.322" fill="#000000" />
       </motion.svg>
     </div>
   )
@@ -292,10 +292,10 @@ export function LifeTokensLargeSvg() {
         whileHover={{ scale: 1.1, rotate: 5 }}
         transition={{ type: "spring", stiffness: 400 }}
       >
-        <rect x="0.007" y="11.2" width="120" height="109.9" rx="54.95" fill="#9C27B0" />
+        <rect x="0.007" y="11.2" width="120" height="109.9" rx="54.95" fill="#000000" />
         <path d="M50.938 16.408L83.434 1.964C83.769 1.815 84.113 1.696 84.458 1.583C81.963.765 79.169.884 76.715 1.969L44.22 16.413C41.084 17.826 39.082 20.755 39.084 23.946L39.124 77L45.842 76.995L45.803 23.942C45.8 20.75 47.802 17.821 50.938 16.408Z" fill="white" />
-        <rect x="29.983" y="76.545" width="56.446" height="21.732" rx="3.716" fill="white" stroke="#231F20" strokeWidth="1.858" />
-        <rect x="36.337" y="77.469" width="49.164" height="19.875" rx="2.322" fill="#66CC99" />
+        <rect x="29.983" y="76.545" width="56.446" height="21.732" rx="3.716" fill="#F8AA40" stroke="#000000" strokeWidth="1.858" />
+        <rect x="36.337" y="77.469" width="49.164" height="19.875" rx="2.322" fill="#000000" />
       </motion.svg>
       
       {/* Paper */}
@@ -306,9 +306,9 @@ export function LifeTokensLargeSvg() {
         whileHover={{ scale: 1.1, rotate: -5 }}
         transition={{ type: "spring", stiffness: 400 }}
       >
-        <rect x=".028" y="38.16" width="120" height="111.164" rx="55.582" fill="#9C27B0" />
-        <rect x="32.027" y="106.621" width="56.446" height="21.96" rx="3.716" fill="white" stroke="#231F20" strokeWidth="1.858" />
-        <rect x="38.381" y="107.543" width="49.164" height="20.102" rx="2.322" fill="#66CC99" />
+        <rect x=".028" y="38.16" width="120" height="111.164" rx="55.582" fill="#000000" />
+        <rect x="32.027" y="106.621" width="56.446" height="21.96" rx="3.716" fill="#F8AA40" stroke="#000000" strokeWidth="1.858" />
+        <rect x="38.381" y="107.543" width="49.164" height="20.102" rx="2.322" fill="#000000" />
       </motion.svg>
       
       {/* Scissors */}
@@ -319,9 +319,9 @@ export function LifeTokensLargeSvg() {
         whileHover={{ scale: 1.1, rotate: 5 }}
         transition={{ type: "spring", stiffness: 400 }}
       >
-        <rect x=".027" y="36.205" width="120" height="101.878" rx="50.939" fill="#9C27B0" />
-        <rect x="29.293" y="97.007" width="56.446" height="20.28" rx="3.716" fill="white" stroke="#231F20" strokeWidth="1.858" />
-        <rect x="35.648" y="97.932" width="49.164" height="18.423" rx="2.322" fill="#66CC99" />
+        <rect x=".027" y="36.205" width="120" height="101.878" rx="50.939" fill="#000000" />
+        <rect x="29.293" y="97.007" width="56.446" height="20.28" rx="3.716" fill="#F8AA40" stroke="#000000" strokeWidth="1.858" />
+        <rect x="35.648" y="97.932" width="49.164" height="18.423" rx="2.322" fill="#000000" />
       </motion.svg>
     </div>
   )

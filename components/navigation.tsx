@@ -61,7 +61,27 @@ export function Navigation() {
           backdropFilter: "blur(12px)",
         }}
       >
-        <div className="flex-1" />
+        <div className="flex-1">
+          {/* TGL Logo */}
+          <button
+            onClick={() => scrollTo("home")}
+            className="flex items-center gap-2 group"
+            aria-label="Go to top"
+          >
+            <svg width="28" height="28" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+              <rect x="2" y="2" width="76" height="76" rx="5" fill="#000000" />
+              <polygon points="40,5 75,40 40,75 5,40" fill="none" stroke="#F8AA40" strokeWidth="2.5" />
+              <line x1="24" y1="27" x2="38" y2="27" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
+              <line x1="31" y1="27" x2="31" y2="42" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
+              <path d="M43 35 Q43 26 51 26 Q58 26 58 31 L52.5 31" fill="none" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
+              <line x1="52.5" y1="31" x2="52.5" y2="36.5" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
+              <line x1="49" y1="36.5" x2="52.5" y2="36.5" stroke="#F8AA40" strokeWidth="2.5" strokeLinecap="round"/>
+              <line x1="24" y1="46" x2="24" y2="57" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
+              <line x1="24" y1="57" x2="36" y2="57" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
+            </svg>
+            <span className="hidden sm:block text-[11px] font-bold tracking-[0.12em] uppercase text-amber/80 group-hover:text-amber transition-colors">TGL</span>
+          </button>
+        </div>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1">
@@ -84,7 +104,7 @@ export function Navigation() {
           {/* CTA */}
           <button
             onClick={() => scrollTo("contact")}
-            className="hidden md:block text-[11px] font-medium tracking-[0.1em] uppercase bg-dark text-amber px-4 py-2 rounded-none hover:opacity-85 transition-opacity"
+            className="hidden md:block text-[11px] font-bold tracking-[0.1em] uppercase bg-amber text-dark px-4 py-2 hover:opacity-85 transition-opacity"
           >
             Hire Me
           </button>
@@ -143,7 +163,7 @@ export function Navigation() {
 
             <button
               onClick={() => scrollTo("contact")}
-              className="mt-3 w-full text-[11px] font-medium tracking-[0.1em] uppercase bg-coral text-cream py-3 rounded"
+              className="mt-3 w-full text-[11px] font-bold tracking-[0.1em] uppercase bg-amber text-dark py-3"
             >
               Hire Me
             </button>
