@@ -9,7 +9,7 @@ const projects = [
     id: "city-peak",
     title: "City Peak",
     subtitle: "Playable Game Website",
-    description: "A casual browser-based game platform designed for quick, relaxing gaming experiences with a compelling storyline.",
+    description: "I transformed a standard web platform into a high-engagement, immersive game environment. By blending narrative storytelling with seamless UI, I created a low-friction user experience that prioritizes both accessibility and emotional connection.",
     tag: "Game UI/UX",
     tagColor: "#14532d",
     tagBg: "rgba(20,83,45,0.10)",
@@ -24,7 +24,7 @@ const projects = [
     id: "hephaestus-gun",
     title: "Hephaestus Gun",
     subtitle: "Myth-Inspired Weapon Design",
-    description: "Concept weapon combining mythological craftsmanship with futuristic materials and visual storytelling.",
+    description: "A masterclass in material storytelling. I designed this concept to bridge the gap between ancient mythology and futuristic tech, focusing on how visual structure and material logic can communicate power and history without a single word.",
     tag: "Concept Art",
     tagColor: "#7c2d12",
     tagBg: "rgba(124,45,18,0.10)",
@@ -39,7 +39,7 @@ const projects = [
     id: "card-battles",
     title: "Card Battles",
     subtitle: "Strategic Type-Based Gameplay",
-    description: "A strategic card game where outcomes hinge on card type interactions — simple to learn, deep to master.",
+    description: "I engineered a balanced, skill-first strategic system that eliminates luck-based frustration. My focus was on creating clear, type-based visual cues and deep mechanical layers that keep players engaged through mastery rather than randomness.",
     tag: "Game Design",
     tagColor: "#7c0a02",
     tagBg: "rgba(124,10,2,0.10)",
@@ -220,7 +220,7 @@ function ProjectCard({ project, className = "" }: { project: any; className?: st
                 <span className="font-mono text-[10px] text-dark/30">{project.year}</span>
               </div>
               <h3 className="font-serif text-[28px] font-black mb-3 text-dark">{project.title}</h3>
-              <p className="text-[14px] leading-[1.7] text-dark/60 font-light">{project.description}</p>
+              <p className="text-[14px] leading-[1.7] text-dark/85 font-medium">{project.description}</p>
             </div>
             
             <div className="flex items-center justify-between pt-6 mt-6 border-t border-dark/5">

@@ -7,15 +7,16 @@ import { PowerBar } from "@/components/game-effects"
 import { CustomCursor } from "@/components/custom-cursor"
 
 const rarityColors = {
-  rare: { bg: "#4a9eff", text: "#2563eb", glow: "rgba(74, 158, 255, 0.5)" },
-  epic: { bg: "#9c27b0", text: "#7b1fa2", glow: "rgba(156, 39, 176, 0.5)" },
-  legendary: { bg: "#ff9800", text: "#f57c00", glow: "rgba(255, 152, 0, 0.5)" }
+  rare: { bg: "#4a9eff", text: "#4a9eff", glow: "rgba(74, 158, 255, 0.4)" },
+  epic: { bg: "#9c27b0", text: "#c77dff", glow: "rgba(156, 39, 176, 0.4)" },
+  legendary: { bg: "#F8AA40", text: "#F8AA40", glow: "rgba(248, 170, 64, 0.5)" }
 }
 
 interface Project {
   id: string
   title: string
   subtitle: string
+  hook: string
   tag: string
   tagColor: string
   tagBg: string
@@ -29,9 +30,10 @@ const projects: Record<string, Project> = {
     id: "city-peak",
     title: "City Peak",
     subtitle: "Playable Game Website",
+    hook: "What if a website felt like taking a breath — not consuming content, but actually playing?",
     tag: "Game UI/UX",
-    tagColor: "#27ae60",
-    tagBg: "rgba(39,174,96,.15)",
+    tagColor: "#F8AA40",
+    tagBg: "rgba(248,170,64,.12)",
     year: "2025",
     difficulty: 90,
     rarity: "legendary"
@@ -40,9 +42,10 @@ const projects: Record<string, Project> = {
     id: "hephaestus-gun",
     title: "Hephaestus Gun",
     subtitle: "Myth-Inspired Weapon Design",
+    hook: "A weapon should tell its story before it's ever fired — through material, form, and myth.",
     tag: "Concept Art",
-    tagColor: "#e67e22",
-    tagBg: "rgba(230,126,34,.15)",
+    tagColor: "#F8AA40",
+    tagBg: "rgba(248,170,64,.12)",
     year: "2025",
     difficulty: 85,
     rarity: "epic"
@@ -51,9 +54,10 @@ const projects: Record<string, Project> = {
     id: "card-battles",
     title: "Card Battles",
     subtitle: "Strategic Type-Based Gameplay",
+    hook: "Luck is lazy design. Every card in this system demands that you think.",
     tag: "Game Design",
-    tagColor: "#c0392b",
-    tagBg: "rgba(192,57,43,.15)",
+    tagColor: "#F8AA40",
+    tagBg: "rgba(248,170,64,.12)",
     year: "2025",
     difficulty: 80,
     rarity: "rare"
@@ -71,10 +75,6 @@ const projectDetails: Record<string, {
   reflections: string[]
   images: string[]
   uiAssets?: {
-    rockPaperScissors?: string
-    settingsMenuOrange?: string
-    settingsMenuRed?: string
-    skillTreeIcons?: string
     teamCards?: string
     zomboyButton?: string
     retryButton?: string
@@ -156,415 +156,355 @@ const projectDetails: Record<string, {
   }
 }
 
+// TGL Logo SVG — Gold on Black per brand guide
+function TGLLogo({ size = 32 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2L38 20L20 38L2 20Z" fill="#000000" stroke="#F8AA40" strokeWidth="1.5"/>
+      <line x1="11" y1="15" x2="29" y2="15" stroke="#F8AA40" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="20" y1="15" x2="20" y2="22" stroke="#F8AA40" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M28 19 Q29 23 26 25 Q23 27 20 26 Q16 25 15 22 Q14 19 16 17" stroke="#F8AA40" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
+      <line x1="24" y1="22" x2="28" y2="22" stroke="#F8AA40" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="11" y1="28" x2="11" y2="33" stroke="#F8AA40" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="11" y1="33" x2="17" y2="33" stroke="#F8AA40" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  )
+}
+
 export default function ProjectPage() {
   const params = useParams()
   const router = useRouter()
   const id = params.id as string
-  
-  const [expandedAsset, setExpandedAsset] = useState<string | null>(null)
-  const [selectedRPS, setSelectedRPS] = useState<'rock' | 'paper' | 'scissors' | null>(null)
-  const [cpuChoice, setCpuChoice] = useState<'rock' | 'paper' | 'scissors' | null>(null)
-  const [gameResult, setGameResult] = useState<'win' | 'lose' | 'draw' | null>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [playerScore, setPlayerScore] = useState(0)
-  const [cpuScore, setCpuScore] = useState(0)
-  
-  const playRPS = (choice: 'rock' | 'paper' | 'scissors') => {
-    if (isPlaying) return
-    setIsPlaying(true)
-    setSelectedRPS(choice)
-    setCpuChoice(null)
-    setGameResult(null)
-    
-    // Simulate CPU thinking
-    setTimeout(() => {
-      const choices: ('rock' | 'paper' | 'scissors')[] = ['rock', 'paper', 'scissors']
-      const cpu = choices[Math.floor(Math.random() * 3)]
-      setCpuChoice(cpu)
-      
-      // Determine winner
-      let result: 'win' | 'lose' | 'draw'
-      if (choice === cpu) {
-        result = 'draw'
-      } else if (
-        (choice === 'rock' && cpu === 'scissors') ||
-        (choice === 'paper' && cpu === 'rock') ||
-        (choice === 'scissors' && cpu === 'paper')
-      ) {
-        result = 'win'
-        setPlayerScore(prev => prev + 1)
-      } else {
-        result = 'lose'
-        setCpuScore(prev => prev + 1)
-      }
-      setGameResult(result)
-      setIsPlaying(false)
-    }, 1000)
-  }
-  
-  const resetRPS = () => {
-    setSelectedRPS(null)
-    setCpuChoice(null)
-    setGameResult(null)
-    setPlayerScore(0)
-    setCpuScore(0)
-  }
-  
+
   const project = projects[id]
   const details = projectDetails[id]
-  
+
   const handleBackToHome = () => {
-    // Set the game started flag before navigating
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('gameStarted', 'true')
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("gameStarted", "true")
     }
-    router.push('/')
+    router.push("/")
   }
-  
+
   if (!project || !details) {
     return (
-      <div className="min-h-screen bg-amber flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#000" }}>
         <CustomCursor />
         <div className="text-center">
-          <h1 className="font-serif text-4xl font-bold text-dark mb-4">Project Not Found</h1>
-          <button 
-            onClick={handleBackToHome} 
-            className="text-coral underline cursor-pointer"
-          >
-            Back to Work
-          </button>
+          <h1 className="font-serif text-4xl font-bold mb-4" style={{ color: "#F8AA40" }}>Project Not Found</h1>
+          <button onClick={handleBackToHome} className="underline" style={{ color: "#F8AA40" }}>Back to Work</button>
         </div>
       </div>
     )
   }
 
+  const rarity = rarityColors[project.rarity]
+
   return (
-    <main className="min-h-screen bg-amber">
+    <main className="min-h-screen" style={{ background: "#000000", color: "#FFFFFF" }}>
       <CustomCursor />
-      
-      {/* Floating Back Button */}
-      <motion.button
-        onClick={handleBackToHome}
-        className="fixed bottom-8 left-8 z-50 flex items-center gap-3 px-5 py-3 bg-dark text-cream rounded-full shadow-lg hover:bg-coral transition-colors"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        whileHover={{ scale: 1.05, x: -4 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M12 5L7 10L12 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        <span className="text-sm font-medium tracking-wide">Back to Home</span>
-      </motion.button>
-      {/* Header */}
-      <motion.div
-        className="bg-cream border-b border-brown/20"
+
+      {/* NAV BAR with Logo */}
+      <motion.header
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 h-14"
+        style={{
+          background: "rgba(0,0,0,0.96)",
+          borderBottom: "1px solid rgba(248,170,64,0.15)",
+          backdropFilter: "blur(16px)",
+        }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
       >
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <motion.button
+        <button onClick={handleBackToHome} className="flex items-center gap-3 group">
+          <TGLLogo size={34} />
+          <div className="hidden sm:block">
+            <span className="font-serif text-sm font-bold tracking-[0.12em] uppercase" style={{ color: "#F8AA40" }}>TGL</span>
+            <span className="block text-[9px] tracking-[0.2em] uppercase" style={{ color: "rgba(255,255,255,0.4)" }}>UI / UX Designer</span>
+          </div>
+        </button>
+
+        <div className="flex items-center gap-3">
+          <span
+            className="hidden sm:inline text-[9px] px-3 py-1 rounded-full tracking-[1.5px] uppercase font-bold"
+            style={{ background: rarity.bg, color: "#000" }}
+          >{project.rarity}</span>
+          <span
+            className="text-[9px] px-3 py-1 rounded-full tracking-[1.5px] uppercase font-bold"
+            style={{ background: project.tagBg, color: project.tagColor, border: "1px solid rgba(248,170,64,0.3)" }}
+          >{project.tag}</span>
+          <button
             onClick={handleBackToHome}
-            className="flex items-center gap-2 text-dark hover:text-coral transition-colors"
-            whileHover={{ x: -4 }}
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M12 5L7 10L12 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span className="text-sm font-medium">Back to Work</span>
-          </motion.button>
-          
-          <div className="flex items-center gap-2">
-            <span 
-              className="text-[10px] px-3 py-1 rounded-full tracking-[1px] uppercase font-bold"
-              style={{ 
-                background: rarityColors[project.rarity].bg,
-                color: "white"
-              }}
-            >
-              {project.rarity}
-            </span>
-            <span 
-              className="text-[10px] px-3 py-1 rounded-full tracking-[1px] uppercase"
-              style={{ 
-                background: project.tagBg, 
-                color: project.tagColor,
-                border: `1px solid ${project.tagColor}40`
-              }}
-            >
-              {project.tag}
-            </span>
-          </div>
+            className="text-[10px] tracking-[1.5px] uppercase font-bold px-4 py-1.5 rounded transition-all duration-200"
+            style={{ border: "1px solid rgba(248,170,64,0.3)", color: "#F8AA40", background: "transparent" }}
+            onMouseEnter={e => { (e.target as HTMLElement).style.background = "#F8AA40"; (e.target as HTMLElement).style.color = "#000" }}
+            onMouseLeave={e => { (e.target as HTMLElement).style.background = "transparent"; (e.target as HTMLElement).style.color = "#F8AA40" }}
+          >← Back</button>
         </div>
-      </motion.div>
+      </motion.header>
 
-      {/* Hero Image (Disabled for City Peak) */}
-      {id !== "city-peak" && details.images && details.images.length > 0 && (
-        <motion.div
-          className="w-full max-w-5xl mx-auto px-6 pt-12"
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          <div className="relative aspect-video w-full overflow-hidden rounded-2xl border-4 border-dark/10 shadow-2xl bg-white">
-            <img 
-              src={details.images[0]} 
-              alt={`${project.title} hero`}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = "https://via.placeholder.com/1200x675?text=Image+Not+Found";
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent pointer-events-none" />
-          </div>
-        </motion.div>
-      )}
+      {/* HERO / HOOK SECTION */}
+      <section className="pt-14 min-h-[70vh] flex flex-col justify-center relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "linear-gradient(rgba(248,170,64,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(248,170,64,0.04) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+        <div className="max-w-5xl mx-auto px-6 md:px-10 py-20 relative z-10">
 
-      {/* Content */}
-      <div className="max-w-5xl mx-auto px-6 py-12">
-        {/* Metadata at the top */}
-        <motion.div
-          className="flex items-center gap-4 mb-4 text-xs tracking-[2px] uppercase text-brown font-bold"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-        >
-          <span>{project.year}</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-coral" />
-          <span>{project.subtitle}</span>
-        </motion.div>
+          <motion.div
+            className="flex items-center gap-4 mb-8 text-[10px] tracking-[2.5px] uppercase font-bold"
+            style={{ color: "rgba(248,170,64,0.6)" }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <span>{project.year}</span>
+            <span style={{ color: "#F8AA40" }}>◆</span>
+            <span>{project.subtitle}</span>
+          </motion.div>
 
-        {/* Title Section */}
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
-        >
-          <h1 className="font-serif text-5xl md:text-6xl font-black text-dark mb-4">
-            {project.title}
-          </h1>
-          <p className="text-coral text-xl font-medium leading-relaxed max-w-3xl">
-            {details.overview}
-          </p>
-        </motion.div>
+          <motion.h1
+            className="font-serif font-black mb-8 leading-none"
+            style={{ fontSize: "clamp(3rem, 8vw, 6rem)", color: "#FFFFFF", letterSpacing: "-0.02em" }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.6 }}
+          >{project.title}</motion.h1>
 
-        {/* Info Grid (Role, Tools, Impact) */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <div className="bg-cream p-6 rounded-lg border border-brown/10 shadow-sm">
-            <div className="text-[10px] tracking-[2px] uppercase text-coral mb-2 font-bold">What I Contributed</div>
-            <div className="text-dark font-medium leading-relaxed">{details.contributed}</div>
-          </div>
-          <div className="bg-cream p-6 rounded-lg border border-brown/10 shadow-sm">
-            <div className="text-[10px] tracking-[2px] uppercase text-coral mb-2 font-bold">Tools Used</div>
-            <div className="text-dark font-medium leading-relaxed">{details.tools}</div>
-          </div>
-          <div className="bg-cream p-6 rounded-lg border border-brown/10 shadow-sm">
-            <div className="text-[10px] tracking-[2px] uppercase text-coral mb-2 font-bold">Impact</div>
-            <div className="text-dark font-medium leading-relaxed">{details.impact}</div>
-          </div>
-        </motion.div>
+          {/* THE HOOK — gold, large, clearly visible */}
+          <motion.div
+            className="relative pl-6 mb-10"
+            style={{ borderLeft: "3px solid #F8AA40" }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.25, duration: 0.5 }}
+          >
+            <p
+              className="font-serif italic leading-snug"
+              style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.65rem)", color: "#F8AA40", maxWidth: "680px" }}
+            >"{project.hook}"</p>
+            <span className="block mt-2 text-[9px] tracking-[2.5px] uppercase font-bold" style={{ color: "rgba(248,170,64,0.45)" }}>
+              The Hook
+            </span>
+          </motion.div>
 
-        {/* Why Section */}
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <h2 className="font-serif text-2xl font-bold text-dark mb-4 flex items-center gap-3">
-            <span className="w-10 h-10 rounded-full bg-coral text-cream flex items-center justify-center text-lg font-bold">?</span>
-            Why
-          </h2>
-          <p className="text-brown leading-relaxed text-lg max-w-4xl">{details.why}</p>
-        </motion.div>
+          {/* The Book — overview */}
+          <motion.p
+            className="text-lg leading-relaxed max-w-2xl"
+            style={{ color: "rgba(255,255,255,0.6)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.35 }}
+          >{details.overview}</motion.p>
+        </div>
+      </section>
 
-        {/* How I Solved & Overview (Merged) */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(248,170,64,0.3), transparent)" }} />
+
+      {/* INFO GRID */}
+      <section className="max-w-5xl mx-auto px-6 md:px-10 py-16">
         <motion.div
-          className="mb-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-px"
+          style={{ background: "rgba(248,170,64,0.12)" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h2 className="font-serif text-2xl font-bold text-dark mb-4 flex items-center gap-3">
-            <span className="w-10 h-10 rounded-full bg-teal text-cream flex items-center justify-center text-lg font-bold">!</span>
-            How I Solved
-          </h2>
-          <div className="space-y-6 text-brown leading-relaxed text-lg max-w-4xl">
-            <p>{details.howSolved}</p>
-            <p className="p-6 bg-cream rounded-lg border-l-4 border-coral italic shadow-sm">
-              {details.overviewLong}
-            </p>
+          {[
+            { label: "What I Contributed", value: details.contributed },
+            { label: "Tools Used", value: details.tools },
+            { label: "Impact", value: details.impact },
+          ].map((item, i) => (
+            <div key={i} className="p-8" style={{ background: "#0a0a0a" }}>
+              <div className="text-[9px] tracking-[2.5px] uppercase font-bold mb-3" style={{ color: "#F8AA40" }}>{item.label}</div>
+              <div className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item.value}</div>
+            </div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* WHY */}
+      <section className="max-w-5xl mx-auto px-6 md:px-10 pb-16">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}>
+          <div className="flex items-center gap-4 mb-6">
+            <span className="w-9 h-9 rounded-full flex items-center justify-center font-serif font-black text-sm" style={{ background: "#F8AA40", color: "#000" }}>?</span>
+            <h2 className="font-serif text-2xl font-bold" style={{ color: "#FFFFFF" }}>Why This Project</h2>
+          </div>
+          <p className="text-base leading-relaxed max-w-3xl" style={{ color: "rgba(255,255,255,0.6)" }}>{details.why}</p>
+        </motion.div>
+      </section>
+
+      {/* HOW I SOLVED */}
+      <section className="max-w-5xl mx-auto px-6 md:px-10 pb-16">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+          <div className="flex items-center gap-4 mb-6">
+            <span className="w-9 h-9 rounded-full flex items-center justify-center font-serif font-black text-sm" style={{ background: "#1a1a1a", color: "#F8AA40", border: "1.5px solid #F8AA40" }}>!</span>
+            <h2 className="font-serif text-2xl font-bold" style={{ color: "#FFFFFF" }}>How I Solved It</h2>
+          </div>
+          <div className="space-y-6 max-w-3xl">
+            <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>{details.howSolved}</p>
+            <blockquote
+              className="p-6 italic text-base leading-relaxed"
+              style={{ borderLeft: "3px solid rgba(248,170,64,0.5)", background: "rgba(248,170,64,0.05)", color: "rgba(255,255,255,0.65)" }}
+            >{details.overviewLong}</blockquote>
           </div>
         </motion.div>
+      </section>
 
-        {/* Reflections */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <h2 className="font-serif text-2xl font-bold text-dark mb-6 flex items-center gap-3">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-coral">
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
-            </svg>
-            Reflections
-          </h2>
+      {/* REFLECTIONS */}
+      <section className="max-w-5xl mx-auto px-6 md:px-10 pb-20">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}>
+          <div className="flex items-center gap-4 mb-8">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#F8AA40"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            <h2 className="font-serif text-2xl font-bold" style={{ color: "#FFFFFF" }}>Reflections</h2>
+          </div>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {details.reflections.map((reflection, i) => (
               <motion.li
                 key={i}
-                className="flex items-start gap-4 p-4 bg-cream rounded-lg border border-brown/5 shadow-sm text-brown"
-                initial={{ opacity: 0, x: -20 }}
+                className="flex items-start gap-4 p-5 text-sm leading-relaxed"
+                style={{ background: "#0d0d0d", border: "1px solid rgba(248,170,64,0.1)", color: "rgba(255,255,255,0.7)" }}
+                initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + i * 0.1 }}
+                transition={{ delay: 0.6 + i * 0.08 }}
               >
-                <span className="w-2 h-2 rounded-full bg-coral mt-2.5 flex-shrink-0" />
-                <span className="leading-relaxed">{reflection}</span>
+                <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#F8AA40" }} />
+                {reflection}
               </motion.li>
             ))}
           </ul>
         </motion.div>
+      </section>
 
-        {/* UI Assets Section (Now after reflections) */}
-        {details.uiAssets && (
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-          >
-            <h2 className="font-serif text-2xl font-bold text-dark mb-8 flex items-center gap-3">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-coral">
-                <rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor"/>
-                <rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor"/>
-                <rect x="3" y="14" width="7" height="7" rx="1" fill="currentColor"/>
-                <rect x="14" y="14" width="7" height="7" rx="1" fill="currentColor"/>
-              </svg>
-              Project UI Assets
-            </h2>
-            
-            <div className="space-y-12">
-              {/* Featured: Character Cards */}
-              {details.uiAssets.teamCards && (
-                <div className="bg-cream p-8 rounded-xl border border-brown/10 shadow-sm">
-                  <div className="text-[10px] tracking-[2px] uppercase text-coral mb-4 font-bold">Character Identity</div>
-                  <h3 className="text-lg font-bold text-dark mb-4">Team Character Cards</h3>
-                  <img 
-                    src={details.uiAssets.teamCards} 
-                    alt="Team character cards"
-                    className="w-full h-auto object-contain rounded-lg"
-                  />
-                  <p className="mt-4 text-xs text-brown/60 italic text-center">Featuring Tandin, Lepcha, and Yangki</p>
-                </div>
-              )}
+      {/* PROJECT SHOWCASE — images moved to bottom */}
+      {details.images && details.images.length > 0 && (
+        <section style={{ background: "#050505", borderTop: "1px solid rgba(248,170,64,0.15)" }}>
+          <div className="max-w-5xl mx-auto px-6 md:px-10 py-20">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
+              <div className="text-[9px] tracking-[3px] uppercase font-bold mb-3" style={{ color: "rgba(248,170,64,0.5)" }}>Project Showcase</div>
+              <h2 className="font-serif text-3xl font-bold mb-12" style={{ color: "#FFFFFF" }}>Visual Work</h2>
+              <div className="space-y-8">
+                {details.images.map((img, i) => (
+                  <motion.div
+                    key={i}
+                    className="relative overflow-hidden"
+                    style={{ border: "1px solid rgba(248,170,64,0.15)" }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.75 + i * 0.1 }}
+                  >
+                    <img
+                      src={img}
+                      alt={`${project.title} showcase ${i + 1}`}
+                      className="w-full h-auto object-cover"
+                      onError={(e) => { (e.target as HTMLImageElement).src = "https://via.placeholder.com/1200x675/0a0a0a/F8AA40?text=Image+Loading" }}
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)" }} />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
-              {/* Grid 1: Gameplay Controls */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Primary Actions */}
-                <div className="bg-cream p-8 rounded-xl border border-brown/10 shadow-sm">
-                  <div className="text-[10px] tracking-[2px] uppercase text-coral mb-6 font-bold">Action Components</div>
-                  <div className="grid grid-cols-2 gap-4">
-                    {[
-                      { img: details.uiAssets.nextButton, label: "Next" },
-                      { img: details.uiAssets.restartButton, label: "Restart" },
-                      { img: details.uiAssets.retryButton, label: "Retry" },
-                      { img: details.uiAssets.nextLevelButton, label: "Next Level" }
-                    ].map((btn, i) => btn.img && (
-                      <div key={i} className="text-center group">
-                        <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral hover:shadow-md transition-all duration-300">
-                          <img src={btn.img} alt={btn.label} className="w-full h-auto" />
-                        </div>
-                        <div className="mt-2 text-[9px] tracking-[1px] uppercase text-brown/60 font-bold">{btn.label}</div>
-                      </div>
-                    ))}
+      {/* UI ASSETS */}
+      {details.uiAssets && (
+        <section style={{ background: "#050505" }}>
+          <div className="max-w-5xl mx-auto px-6 md:px-10 pb-20">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}>
+              <div className="text-[9px] tracking-[3px] uppercase font-bold mb-3" style={{ color: "rgba(248,170,64,0.5)" }}>Design System</div>
+              <h2 className="font-serif text-3xl font-bold mb-12" style={{ color: "#FFFFFF" }}>UI Assets</h2>
+              <div className="space-y-12">
+                {details.uiAssets.teamCards && (
+                  <div className="p-8" style={{ background: "#0a0a0a", border: "1px solid rgba(248,170,64,0.12)" }}>
+                    <div className="text-[9px] tracking-[2.5px] uppercase font-bold mb-2" style={{ color: "#F8AA40" }}>Character Identity</div>
+                    <h3 className="text-base font-bold mb-6" style={{ color: "#FFF" }}>Team Character Cards</h3>
+                    <img src={details.uiAssets.teamCards} alt="Team character cards" className="w-full h-auto object-contain" />
+                    <p className="mt-4 text-xs italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>Featuring Tandin, Lepcha, and Yangki</p>
                   </div>
-                </div>
-
-                {/* System Navigation */}
-                <div className="bg-cream p-8 rounded-xl border border-brown/10 shadow-sm">
-                  <div className="text-[10px] tracking-[2px] uppercase text-coral mb-6 font-bold">System Navigation</div>
-                  <div className="space-y-6">
-                    {/* Main Menus */}
+                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="p-8" style={{ background: "#0a0a0a", border: "1px solid rgba(248,170,64,0.12)" }}>
+                    <div className="text-[9px] tracking-[2.5px] uppercase font-bold mb-6" style={{ color: "#F8AA40" }}>Action Components</div>
                     <div className="grid grid-cols-2 gap-4">
-                      {details.uiAssets.mainMenuOrange && (
-                        <div className="group">
-                          <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral transition-all">
-                            <img src={details.uiAssets.mainMenuOrange} alt="Main Menu" className="w-full h-auto" />
+                      {[
+                        { img: details.uiAssets.nextButton, label: "Next" },
+                        { img: details.uiAssets.restartButton, label: "Restart" },
+                        { img: details.uiAssets.retryButton, label: "Retry" },
+                        { img: details.uiAssets.nextLevelButton, label: "Next Level" },
+                      ].map((btn, i) => btn.img && (
+                        <div key={i} className="text-center">
+                          <div className="p-4" style={{ background: "#111", border: "1px solid rgba(248,170,64,0.08)" }}>
+                            <img src={btn.img} alt={btn.label} className="w-full h-auto" />
                           </div>
-                          <div className="mt-2 text-[8px] text-brown/40 uppercase text-center font-bold">Menu (Outline)</div>
+                          <div className="mt-2 text-[8px] tracking-[1.5px] uppercase font-bold" style={{ color: "rgba(248,170,64,0.4)" }}>{btn.label}</div>
                         </div>
-                      )}
-                      {details.uiAssets.mainMenuGray && (
-                        <div className="group">
-                          <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral transition-all">
-                            <img src={details.uiAssets.mainMenuGray} alt="Main Menu" className="w-full h-auto" />
-                          </div>
-                          <div className="mt-2 text-[8px] text-brown/40 uppercase text-center font-bold">Menu (Solid)</div>
-                        </div>
-                      )}
+                      ))}
                     </div>
-                    {/* Back Options */}
-                    <div className="grid grid-cols-2 gap-4">
-                      {details.uiAssets.backButtonOrange && (
-                        <div className="group">
-                          <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral transition-all flex justify-center">
-                            <img src={details.uiAssets.backButtonOrange} alt="Back" className="h-10 w-auto" />
+                  </div>
+                  <div className="p-8" style={{ background: "#0a0a0a", border: "1px solid rgba(248,170,64,0.12)" }}>
+                    <div className="text-[9px] tracking-[2.5px] uppercase font-bold mb-6" style={{ color: "#F8AA40" }}>Navigation</div>
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        {[
+                          { img: details.uiAssets.mainMenuOrange, label: "Menu (Outline)" },
+                          { img: details.uiAssets.mainMenuGray, label: "Menu (Solid)" },
+                        ].map((btn, i) => btn.img && (
+                          <div key={i} className="text-center">
+                            <div className="p-4" style={{ background: "#111", border: "1px solid rgba(248,170,64,0.08)" }}>
+                              <img src={btn.img} alt={btn.label} className="w-full h-auto" />
+                            </div>
+                            <div className="mt-2 text-[8px] tracking-[1px] uppercase font-bold" style={{ color: "rgba(248,170,64,0.3)" }}>{btn.label}</div>
                           </div>
-                          <div className="mt-2 text-[8px] text-brown/40 uppercase text-center font-bold">Back (Orange)</div>
-                        </div>
-                      )}
-                      {details.uiAssets.backButtonRed && (
-                        <div className="group">
-                          <div className="bg-white p-4 rounded-lg border border-brown/5 hover:border-coral transition-all flex justify-center">
-                            <img src={details.uiAssets.backButtonRed} alt="Back" className="h-10 w-auto" />
+                        ))}
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        {[
+                          { img: details.uiAssets.backButtonOrange, label: "Back (Gold)" },
+                          { img: details.uiAssets.backButtonRed, label: "Back (Red)" },
+                        ].map((btn, i) => btn.img && (
+                          <div key={i} className="text-center">
+                            <div className="p-4 flex justify-center" style={{ background: "#111", border: "1px solid rgba(248,170,64,0.08)" }}>
+                              <img src={btn.img} alt={btn.label} className="h-10 w-auto" />
+                            </div>
+                            <div className="mt-2 text-[8px] tracking-[1px] uppercase font-bold" style={{ color: "rgba(248,170,64,0.3)" }}>{btn.label}</div>
                           </div>
-                          <div className="mt-2 text-[8px] text-brown/40 uppercase text-center font-bold">Back (Red)</div>
-                        </div>
-                      )}
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
-              {/* Game Modes */}
-              {details.uiAssets.zomboyButton && (
-                <div className="bg-cream p-8 rounded-xl border border-brown/10 shadow-sm max-w-sm mx-auto">
-                  <div className="text-[10px] tracking-[2px] uppercase text-coral mb-6 font-bold text-center">Game Modes</div>
-                  <div className="bg-white p-6 rounded-lg border border-brown/5 hover:border-coral hover:shadow-lg transition-all group">
-                    <img src={details.uiAssets.zomboyButton} alt="Zomboy Mode" className="w-full h-auto" />
-                    <div className="mt-4 text-[10px] tracking-[2px] uppercase text-dark font-bold text-center">Zomboy Button</div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Complexity (Moved to bottom) */}
-        <motion.div
-          className="pt-12 border-t border-brown/20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
-          <PowerBar 
-            value={project.difficulty} 
-            max={100} 
-            color={project.tagColor}
-            label="Project Complexity"
-            showPulse={true}
-          />
+      {/* COMPLEXITY BAR */}
+      <section className="max-w-5xl mx-auto px-6 md:px-10 py-16" style={{ borderTop: "1px solid rgba(248,170,64,0.1)" }}>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
+          <PowerBar value={project.difficulty} max={100} color="#F8AA40" label="Project Complexity" showPulse={true} />
         </motion.div>
-      </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-12 text-center" style={{ background: "#000", borderTop: "1px solid rgba(248,170,64,0.15)" }}>
+        <div className="flex flex-col items-center gap-4">
+          <TGLLogo size={36} />
+          <p className="font-serif text-sm italic" style={{ color: "rgba(255,255,255,0.3)" }}>Tandin Gyeltshen Lepcha · UI/UX Designer</p>
+          <button
+            onClick={handleBackToHome}
+            className="text-[10px] tracking-[2px] uppercase font-bold px-6 py-2.5 transition-all duration-200"
+            style={{ background: "#F8AA40", color: "#000" }}
+            onMouseEnter={e => ((e.target as HTMLElement).style.opacity = "0.85")}
+            onMouseLeave={e => ((e.target as HTMLElement).style.opacity = "1")}
+          >← View All Projects</button>
+        </div>
+      </footer>
     </main>
   )
 }
