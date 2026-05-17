@@ -205,37 +205,30 @@ export default function ProjectPage() {
         {/* Empty left spacer — mirrors home nav */}
         <div className="flex-1" />
 
-        {/* Centre: project breadcrumb links */}
+        {/* Centre: current project label */}
         <div className="hidden md:flex items-center gap-1">
-          <button
-            onClick={handleBackToHome}
-            className="text-[11px] font-medium tracking-[0.08em] uppercase px-4 py-1.5 rounded transition-all duration-200 text-white/60 hover:text-white hover:bg-white/5"
-          >
-            Work
-          </button>
-          <span className="text-white/20 text-[11px]">/</span>
           <span className="text-[11px] font-medium tracking-[0.08em] uppercase px-4 py-1.5 text-amber bg-white/10 rounded">
             {project.title}
           </span>
         </div>
 
-        {/* Right: CTA — same style as home "Hire Me" */}
+        {/* Right: Hire Me — identical to home nav */}
         <div className="flex-1 flex justify-end">
           <button
             onClick={handleBackToHome}
             className="hidden md:block text-[11px] font-bold tracking-[0.1em] uppercase bg-amber text-dark px-4 py-2 hover:opacity-85 transition-opacity"
             style={{ color: "#000", background: "#F8AA40" }}
           >
-            ← Back
+            Hire Me
           </button>
 
-          {/* Mobile back */}
+          {/* Mobile */}
           <button
             onClick={handleBackToHome}
             className="md:hidden text-[11px] font-bold tracking-[0.1em] uppercase bg-amber text-dark px-4 py-2"
             style={{ color: "#000", background: "#F8AA40" }}
           >
-            ← Back
+            Hire Me
           </button>
         </div>
       </motion.header>
