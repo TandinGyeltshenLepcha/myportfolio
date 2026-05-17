@@ -156,20 +156,6 @@ const projectDetails: Record<string, {
   }
 }
 
-// TGL Logo SVG — Gold on Black per brand guide
-function TGLLogo({ size = 32 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 2L38 20L20 38L2 20Z" fill="#000000" stroke="#F8AA40" strokeWidth="1.5"/>
-      <line x1="11" y1="15" x2="29" y2="15" stroke="#F8AA40" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="20" y1="15" x2="20" y2="22" stroke="#F8AA40" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M28 19 Q29 23 26 25 Q23 27 20 26 Q16 25 15 22 Q14 19 16 17" stroke="#F8AA40" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
-      <line x1="24" y1="22" x2="28" y2="22" stroke="#F8AA40" strokeWidth="1.5" strokeLinecap="round"/>
-      <line x1="11" y1="28" x2="11" y2="33" stroke="#F8AA40" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="11" y1="33" x2="17" y2="33" stroke="#F8AA40" strokeWidth="2" strokeLinecap="round"/>
-    </svg>
-  )
-}
 
 export default function ProjectPage() {
   const params = useParams()
@@ -204,42 +190,53 @@ export default function ProjectPage() {
     <main className="min-h-screen" style={{ background: "#000000", color: "#FFFFFF" }}>
       <CustomCursor />
 
-      {/* NAV BAR with Logo */}
+      {/* NAV BAR — matches home nav exactly */}
       <motion.header
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 h-14"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center px-8 h-[56px]"
         style={{
-          background: "rgba(0,0,0,0.96)",
-          borderBottom: "1px solid rgba(248,170,64,0.15)",
-          backdropFilter: "blur(16px)",
+          background: "rgba(0,0,0,0.97)",
+          borderBottom: "1px solid rgba(255,255,255,0.07)",
+          backdropFilter: "blur(12px)",
         }}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <button onClick={handleBackToHome} className="flex items-center gap-3 group">
-          <TGLLogo size={34} />
-          <div className="hidden sm:block">
-            <span className="font-serif text-sm font-bold tracking-[0.12em] uppercase" style={{ color: "#F8AA40" }}>TGL</span>
-            <span className="block text-[9px] tracking-[0.2em] uppercase" style={{ color: "rgba(255,255,255,0.4)" }}>UI / UX Designer</span>
-          </div>
-        </button>
+        {/* Empty left spacer — mirrors home nav */}
+        <div className="flex-1" />
 
-        <div className="flex items-center gap-3">
-          <span
-            className="hidden sm:inline text-[9px] px-3 py-1 rounded-full tracking-[1.5px] uppercase font-bold"
-            style={{ background: rarity.bg, color: "#000" }}
-          >{project.rarity}</span>
-          <span
-            className="text-[9px] px-3 py-1 rounded-full tracking-[1.5px] uppercase font-bold"
-            style={{ background: project.tagBg, color: project.tagColor, border: "1px solid rgba(248,170,64,0.3)" }}
-          >{project.tag}</span>
+        {/* Centre: project breadcrumb links */}
+        <div className="hidden md:flex items-center gap-1">
           <button
             onClick={handleBackToHome}
-            className="text-[10px] tracking-[1.5px] uppercase font-bold px-4 py-1.5 rounded transition-all duration-200"
-            style={{ border: "1px solid rgba(248,170,64,0.3)", color: "#F8AA40", background: "transparent" }}
-            onMouseEnter={e => { (e.target as HTMLElement).style.background = "#F8AA40"; (e.target as HTMLElement).style.color = "#000" }}
-            onMouseLeave={e => { (e.target as HTMLElement).style.background = "transparent"; (e.target as HTMLElement).style.color = "#F8AA40" }}
-          >← Back</button>
+            className="text-[11px] font-medium tracking-[0.08em] uppercase px-4 py-1.5 rounded transition-all duration-200 text-white/60 hover:text-white hover:bg-white/5"
+          >
+            Work
+          </button>
+          <span className="text-white/20 text-[11px]">/</span>
+          <span className="text-[11px] font-medium tracking-[0.08em] uppercase px-4 py-1.5 text-amber bg-white/10 rounded">
+            {project.title}
+          </span>
+        </div>
+
+        {/* Right: CTA — same style as home "Hire Me" */}
+        <div className="flex-1 flex justify-end">
+          <button
+            onClick={handleBackToHome}
+            className="hidden md:block text-[11px] font-bold tracking-[0.1em] uppercase bg-amber text-dark px-4 py-2 hover:opacity-85 transition-opacity"
+            style={{ color: "#000", background: "#F8AA40" }}
+          >
+            ← Back
+          </button>
+
+          {/* Mobile back */}
+          <button
+            onClick={handleBackToHome}
+            className="md:hidden text-[11px] font-bold tracking-[0.1em] uppercase bg-amber text-dark px-4 py-2"
+            style={{ color: "#000", background: "#F8AA40" }}
+          >
+            ← Back
+          </button>
         </div>
       </motion.header>
 
@@ -494,8 +491,6 @@ export default function ProjectPage() {
       {/* FOOTER */}
       <footer className="py-12 text-center" style={{ background: "#000", borderTop: "1px solid rgba(248,170,64,0.15)" }}>
         <div className="flex flex-col items-center gap-4">
-          <TGLLogo size={36} />
-          <p className="font-serif text-sm italic" style={{ color: "rgba(255,255,255,0.3)" }}>Tandin Gyeltshen Lepcha · UI/UX Designer</p>
           <button
             onClick={handleBackToHome}
             className="text-[10px] tracking-[2px] uppercase font-bold px-6 py-2.5 transition-all duration-200"
