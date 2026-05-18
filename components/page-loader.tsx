@@ -77,48 +77,6 @@ export function PageLoader() {
           />
 
           <div className="flex flex-col items-center gap-8 relative z-10">
-            {/* Animated logo */}
-            <motion.div 
-              className="relative"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* Rotating outer ring */}
-              <motion.div
-                className="absolute -inset-8 border-2 border-dark/20 rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute -inset-12 border border-dark/15 rounded-full"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              />
-              
-              {/* TGL Diamond Logo — Gold on Black */}
-              <motion.div
-                animate={{ scale: [1, 1.04, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                  {/* Diamond enclosure */}
-                  <rect x="4" y="4" width="72" height="72" rx="4" fill="#000000" />
-                  <polygon points="40,6 74,40 40,74 6,40" fill="none" stroke="#F8AA40" strokeWidth="2.5" />
-                  {/* T stroke */}
-                  <line x1="26" y1="28" x2="40" y2="28" stroke="#F8AA40" strokeWidth="3" strokeLinecap="round"/>
-                  <line x1="33" y1="28" x2="33" y2="42" stroke="#F8AA40" strokeWidth="3" strokeLinecap="round"/>
-                  {/* G stroke */}
-                  <path d="M44 34 Q44 26 52 26 Q58 26 58 31 L53 31" fill="none" stroke="#F8AA40" strokeWidth="3" strokeLinecap="round"/>
-                  <line x1="53" y1="31" x2="53" y2="36" stroke="#F8AA40" strokeWidth="3" strokeLinecap="round"/>
-                  <line x1="50" y1="36" x2="53" y2="36" stroke="#F8AA40" strokeWidth="2.5" strokeLinecap="round"/>
-                  {/* L stroke */}
-                  <line x1="26" y1="46" x2="26" y2="56" stroke="#F8AA40" strokeWidth="3" strokeLinecap="round"/>
-                  <line x1="26" y1="56" x2="37" y2="56" stroke="#F8AA40" strokeWidth="3" strokeLinecap="round"/>
-                </svg>
-              </motion.div>
-            </motion.div>
-
             <div className="w-64 space-y-2">
               <div className="h-4 border-2 border-dark/30 rounded overflow-hidden relative" style={{ background: "rgba(0,0,0,0.12)" }}>
                 {/* Background pattern */}
