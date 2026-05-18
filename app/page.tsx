@@ -56,6 +56,16 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [unlock, gameStarted])
 
+  useEffect(() => {
+    if (!gameStarted) return
+    if (typeof window !== "undefined" && sessionStorage.getItem("scrollToContact") === "true") {
+      sessionStorage.removeItem("scrollToContact")
+      setTimeout(() => {
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+      }, 500)
+    }
+  }, [gameStarted])
+
   const handleGameStart = () => {
     setGameStarted(true)
     if (typeof window !== "undefined") sessionStorage.setItem("gameStarted", "true")

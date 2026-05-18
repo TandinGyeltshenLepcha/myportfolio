@@ -212,10 +212,16 @@ export default function ProjectPage() {
           </span>
         </div>
 
-        {/* Right: Hire Me — identical to home nav */}
+        {/* Right: Hire Me — navigates home then scrolls to contact */}
         <div className="flex-1 flex justify-end">
           <button
-            onClick={handleBackToHome}
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                sessionStorage.setItem("gameStarted", "true")
+                sessionStorage.setItem("scrollToContact", "true")
+              }
+              router.push("/")
+            }}
             className="hidden md:block text-[11px] font-bold tracking-[0.1em] uppercase bg-amber text-dark px-4 py-2 hover:opacity-85 transition-opacity"
             style={{ color: "#000", background: "#F8AA40" }}
           >
@@ -224,7 +230,13 @@ export default function ProjectPage() {
 
           {/* Mobile */}
           <button
-            onClick={handleBackToHome}
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                sessionStorage.setItem("gameStarted", "true")
+                sessionStorage.setItem("scrollToContact", "true")
+              }
+              router.push("/")
+            }}
             className="md:hidden text-[11px] font-bold tracking-[0.1em] uppercase bg-amber text-dark px-4 py-2"
             style={{ color: "#000", background: "#F8AA40" }}
           >
@@ -280,15 +292,6 @@ export default function ProjectPage() {
               The Hook
             </span>
           </motion.div>
-
-          {/* The Book — overview */}
-          <motion.p
-            className="text-lg leading-relaxed max-w-2xl"
-            style={{ color: "rgba(255,255,255,0.6)" }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.35 }}
-          >{details.overview}</motion.p>
         </div>
       </section>
 
