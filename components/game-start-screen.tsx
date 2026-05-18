@@ -374,31 +374,6 @@ export function GameStartScreen({ onStart }: { onStart: () => void }) {
                 animate={isGlitching ? { x: [-2, 2, -2, 0], filter: ["hue-rotate(0deg)", "hue-rotate(90deg)", "hue-rotate(0deg)"] } : {}}
                 transition={{ duration: 0.1, repeat: isGlitching ? 4 : 0 }}
               >
-                {/* TGL Diamond Monogram Logo — Gold on Black */}
-                <motion.span
-                  className="inline-block -mb-2 mr-3"
-                  animate={{
-                    scale: [1, 1.06, 1],
-                  }}
-                  transition={{
-                    scale: { duration: 3, repeat: Infinity },
-                  }}
-                >
-                  <svg width="64" height="64" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="2" width="76" height="76" rx="5" fill="#000000" />
-                    <polygon points="40,5 75,40 40,75 5,40" fill="none" stroke="#F8AA40" strokeWidth="2.5" />
-                    {/* T */}
-                    <line x1="24" y1="27" x2="38" y2="27" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
-                    <line x1="31" y1="27" x2="31" y2="42" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
-                    {/* G */}
-                    <path d="M43 35 Q43 26 51 26 Q58 26 58 31 L52.5 31" fill="none" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
-                    <line x1="52.5" y1="31" x2="52.5" y2="36.5" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
-                    <line x1="49" y1="36.5" x2="52.5" y2="36.5" stroke="#F8AA40" strokeWidth="2.5" strokeLinecap="round"/>
-                    {/* L */}
-                    <line x1="24" y1="46" x2="24" y2="57" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
-                    <line x1="24" y1="57" x2="36" y2="57" stroke="#F8AA40" strokeWidth="3.2" strokeLinecap="round"/>
-                  </svg>
-                </motion.span>
                 <GlitchyText text="Tandin" isActive={isGlitching} />
                 <span className="text-amber">.TGL</span>
 
