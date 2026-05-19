@@ -190,7 +190,7 @@ export default function ProjectPage() {
     <main className="min-h-screen" style={{ background: "#000000", color: "#FFFFFF" }}>
       <CustomCursor />
 
-      {/* NAV BAR — matches home nav exactly */}
+      {/* NAV BAR */}
       <motion.header
         className="fixed top-0 left-0 right-0 z-50 flex items-center px-8 h-[56px]"
         style={{
@@ -202,17 +202,14 @@ export default function ProjectPage() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        {/* Empty left spacer — mirrors home nav */}
         <div className="flex-1" />
 
-        {/* Centre: current project label */}
         <div className="hidden md:flex items-center gap-1">
           <span className="text-[11px] font-medium tracking-[0.08em] uppercase px-4 py-1.5 text-amber bg-white/10 rounded">
             {project.title}
           </span>
         </div>
 
-        {/* Right: Hire Me — navigates home then scrolls to contact */}
         <div className="flex-1 flex justify-end">
           <button
             onClick={() => {
@@ -228,7 +225,6 @@ export default function ProjectPage() {
             Hire Me
           </button>
 
-          {/* Mobile */}
           <button
             onClick={() => {
               if (typeof window !== "undefined") {
@@ -261,7 +257,7 @@ export default function ProjectPage() {
             style={{ color: "rgba(248,170,64,0.6)" }}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 0.4 }}
           >
             <span>{project.year}</span>
             <span style={{ color: "#F8AA40" }}>◆</span>
@@ -273,16 +269,15 @@ export default function ProjectPage() {
             style={{ fontSize: "clamp(3rem, 8vw, 6rem)", color: "#FFFFFF", letterSpacing: "-0.02em" }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >{project.title}</motion.h1>
 
-          {/* THE HOOK — gold, large, clearly visible */}
           <motion.div
             className="relative pl-6 mb-10"
             style={{ borderLeft: "3px solid #F8AA40" }}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.25, duration: 0.5 }}
+            transition={{ delay: 0.1, duration: 0.4 }}
           >
             <p
               className="font-serif italic leading-snug"
@@ -303,8 +298,9 @@ export default function ProjectPage() {
           className="grid grid-cols-1 md:grid-cols-3 gap-px"
           style={{ background: "rgba(248,170,64,0.12)" }}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
         >
           {[
             { label: "What I Contributed", value: details.contributed },
@@ -321,7 +317,7 @@ export default function ProjectPage() {
 
       {/* WHY */}
       <section className="max-w-5xl mx-auto px-6 md:px-10 pb-16">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
           <div className="flex items-center gap-4 mb-6">
             <span className="w-9 h-9 rounded-full flex items-center justify-center font-serif font-black text-sm" style={{ background: "#F8AA40", color: "#000" }}>?</span>
             <h2 className="font-serif text-2xl font-bold" style={{ color: "#FFFFFF" }}>Why This Project</h2>
@@ -332,7 +328,7 @@ export default function ProjectPage() {
 
       {/* HOW I SOLVED */}
       <section className="max-w-5xl mx-auto px-6 md:px-10 pb-16">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
           <div className="flex items-center gap-4 mb-6">
             <span className="w-9 h-9 rounded-full flex items-center justify-center font-serif font-black text-sm" style={{ background: "#1a1a1a", color: "#F8AA40", border: "1.5px solid #F8AA40" }}>!</span>
             <h2 className="font-serif text-2xl font-bold" style={{ color: "#FFFFFF" }}>How I Solved It</h2>
@@ -349,7 +345,7 @@ export default function ProjectPage() {
 
       {/* REFLECTIONS */}
       <section className="max-w-5xl mx-auto px-6 md:px-10 pb-20">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
           <div className="flex items-center gap-4 mb-8">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="#F8AA40"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
             <h2 className="font-serif text-2xl font-bold" style={{ color: "#FFFFFF" }}>Reflections</h2>
@@ -361,8 +357,9 @@ export default function ProjectPage() {
                 className="flex items-start gap-4 p-5 text-sm leading-relaxed"
                 style={{ background: "#0d0d0d", border: "1px solid rgba(248,170,64,0.1)", color: "rgba(255,255,255,0.7)" }}
                 initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + i * 0.08 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
               >
                 <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#F8AA40" }} />
                 {reflection}
@@ -372,11 +369,11 @@ export default function ProjectPage() {
         </motion.div>
       </section>
 
-      {/* PROJECT SHOWCASE — images moved to bottom */}
+      {/* PROJECT SHOWCASE */}
       {details.images && details.images.length > 0 && (
         <section style={{ background: "#050505", borderTop: "1px solid rgba(248,170,64,0.15)" }}>
           <div className="max-w-5xl mx-auto px-6 md:px-10 py-20">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
               <div className="text-[9px] tracking-[3px] uppercase font-bold mb-3" style={{ color: "rgba(248,170,64,0.5)" }}>Project Showcase</div>
               <h2 className="font-serif text-3xl font-bold mb-12" style={{ color: "#FFFFFF" }}>Visual Work</h2>
               <div className="space-y-8">
@@ -386,8 +383,9 @@ export default function ProjectPage() {
                     className="relative overflow-hidden"
                     style={{ border: "1px solid rgba(248,170,64,0.15)" }}
                     initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.75 + i * 0.1 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
                   >
                     <img
                       src={img}
@@ -408,7 +406,7 @@ export default function ProjectPage() {
       {details.uiAssets && (
         <section style={{ background: "#050505" }}>
           <div className="max-w-5xl mx-auto px-6 md:px-10 pb-20">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
               <div className="text-[9px] tracking-[3px] uppercase font-bold mb-3" style={{ color: "rgba(248,170,64,0.5)" }}>Design System</div>
               <h2 className="font-serif text-3xl font-bold mb-12" style={{ color: "#FFFFFF" }}>UI Assets</h2>
               <div className="space-y-12">
@@ -479,7 +477,7 @@ export default function ProjectPage() {
 
       {/* COMPLEXITY BAR */}
       <section className="max-w-5xl mx-auto px-6 md:px-10 py-16" style={{ borderTop: "1px solid rgba(248,170,64,0.1)" }}>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
           <PowerBar value={project.difficulty} max={100} color="#F8AA40" label="Project Complexity" showPulse={true} />
         </motion.div>
       </section>
