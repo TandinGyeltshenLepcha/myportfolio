@@ -43,7 +43,7 @@ export function HeroSection() {
     <section
       ref={containerRef}
       id="home"
-      className="min-h-screen bg-amber relative flex flex-col justify-between overflow-hidden"
+      className="bg-amber relative flex flex-col justify-between overflow-hidden"
     >
       {/* Subtle grid */}
       <div
@@ -55,7 +55,7 @@ export function HeroSection() {
       />
 
       <motion.div
-        className="max-w-[1100px] mx-auto px-8 pt-16 pb-4 w-full sm:pt-20 sm:pb-6 flex-1 flex flex-col justify-center"
+        className="max-w-[1100px] mx-auto px-8 pt-24 pb-6 w-full sm:pt-28 sm:pb-8 flex flex-col justify-center"
         style={{ opacity, y }}
       >
         {/* Eyebrow */}
