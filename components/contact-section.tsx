@@ -35,7 +35,7 @@ export function ContactSection() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-4 mb-6">
-              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-cream/30">Get in touch</span>
+              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-cream/60">Get in touch</span>
               <div className="w-12 h-px bg-white/10" />
             </div>
             <h2 className="font-serif text-[clamp(32px,4vw,54px)] font-black leading-[1.05] text-cream mb-5">
@@ -51,8 +51,8 @@ export function ContactSection() {
                 { icon: "✉", label: "Email", value: "tandingyeltshenlepcha@gmail.com", href: "mailto:tandingyeltshenlepcha@gmail.com" },
                 { icon: "⬡", label: "LinkedIn", value: "linkedin.com/in/tandingyeltshenlepcha", href: "https://www.linkedin.com/in/tandingyeltshenlepcha" },
               ].map((link) => (
-                <a 
-                  key={link.label} 
+                <a
+                  key={link.label}
                   href={link.href}
                   target={link.href.startsWith('http') ? "_blank" : undefined}
                   rel={link.href.startsWith('http') ? "noopener noreferrer" : undefined}
@@ -62,7 +62,7 @@ export function ContactSection() {
                     {link.icon}
                   </div>
                   <div>
-                    <div className="text-[10px] tracking-[0.12em] uppercase text-cream/30">{link.label}</div>
+                    <div className="text-[10px] tracking-[0.12em] uppercase text-cream/60">{link.label}</div>
                     <div className="text-[13px] text-cream/55 group-hover:text-cream/80 transition-colors">{link.value}</div>
                   </div>
                 </a>
@@ -95,28 +95,28 @@ export function ContactSection() {
                 {/* Name + Email */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-medium tracking-[0.12em] uppercase text-cream/30 mb-2">Name</label>
+                    <label className="block text-[10px] font-medium tracking-[0.12em] uppercase text-cream/60 mb-2">Name</label>
                     <input
                       type="text" required placeholder="Your name"
                       value={formData.name}
                       onChange={e => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-white/[0.05] border border-white/10 rounded-md px-3.5 py-2.5 text-[14px] text-cream placeholder-cream/20 focus:outline-none focus:border-amber/60 transition-colors"
+                      className="w-full bg-white/[0.05] border border-white/10 rounded-md px-3.5 py-2.5 text-[14px] text-white placeholder-white/50 focus:outline-none focus:border-amber/60 transition-colors caret-amber"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium tracking-[0.12em] uppercase text-cream/30 mb-2">Email</label>
+                    <label className="block text-[10px] font-medium tracking-[0.12em] uppercase text-cream/60 mb-2">Email</label>
                     <input
                       type="email" required placeholder="your@email.com"
                       value={formData.email}
                       onChange={e => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-white/[0.05] border border-white/10 rounded-md px-3.5 py-2.5 text-[14px] text-cream placeholder-cream/20 focus:outline-none focus:border-amber/60 transition-colors"
+                      className="w-full bg-white/[0.05] border border-white/10 rounded-md px-3.5 py-2.5 text-[14px] text-white placeholder-white/50 focus:outline-none focus:border-amber/60 transition-colors caret-amber"
                     />
                   </div>
                 </div>
 
                 {/* Project type */}
                 <div>
-                  <label className="block text-[10px] font-medium tracking-[0.12em] uppercase text-cream/30 mb-2">Project Type</label>
+                  <label className="block text-[10px] font-medium tracking-[0.12em] uppercase text-cream/60 mb-2">Project Type</label>
                   <div className="flex flex-wrap gap-2">
                     {projectTypes.map((type) => (
                       <button
@@ -136,12 +136,12 @@ export function ContactSection() {
 
                 {/* Message */}
                 <div>
-                  <label className="block text-[10px] font-medium tracking-[0.12em] uppercase text-cream/30 mb-2">Message</label>
+                  <label className="block text-[10px] font-medium tracking-[0.12em] uppercase text-cream/60 mb-2">Message</label>
                   <textarea
                     required rows={4} placeholder="Tell me about your project..."
                     value={formData.message}
                     onChange={e => setFormData({...formData, message: e.target.value})}
-                    className="w-full bg-white/[0.05] border border-white/10 rounded-md px-3.5 py-2.5 text-[14px] text-cream placeholder-cream/20 focus:outline-none focus:border-amber/60 transition-colors resize-none"
+                    className="w-full bg-white/[0.05] border border-white/10 rounded-md px-3.5 py-2.5 text-[14px] text-white placeholder-white/50 focus:outline-none focus:border-amber/60 transition-colors resize-none caret-amber"
                   />
                 </div>
 
