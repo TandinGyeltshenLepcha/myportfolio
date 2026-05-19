@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import { motion, useInView, useScroll, useTransform } from "framer-motion"
-import { HealthBarsSvg, SettingsButtonsSvg, LifeTokensSvg } from "./svg-components"
+import { HealthBarsSvg, SettingsButtonsSvg } from "./svg-components"
 
 const words = ["Game UI", "HUD Systems", "Components", "Interfaces"]
 
@@ -43,7 +43,7 @@ export function HeroSection() {
     <section
       ref={containerRef}
       id="home"
-      className="min-h-screen bg-amber relative flex flex-col justify-center overflow-hidden"
+      className="min-h-screen bg-amber relative flex flex-col justify-between overflow-hidden"
     >
       {/* Subtle grid */}
       <div
@@ -55,7 +55,7 @@ export function HeroSection() {
       />
 
       <motion.div
-        className="max-w-[1100px] mx-auto px-8 pt-24 pb-12 w-full"
+        className="max-w-[1100px] mx-auto px-8 pt-16 pb-4 w-full sm:pt-20 sm:pb-6 flex-1 flex flex-col justify-center"
         style={{ opacity, y }}
       >
         {/* Eyebrow */}
@@ -145,7 +145,7 @@ export function HeroSection() {
           {/* Right: floating cards with actual SVG graphics */}
           <div className="relative h-[420px] hidden lg:block">
             <FloatingCard
-              className="top-0 left-[5%]"
+              className="top-[30px] left-[5%]"
               delay={0.4}
               rotation={-2}
               shadowColor="rgba(0,0,0,0.25)"
@@ -157,7 +157,7 @@ export function HeroSection() {
             </FloatingCard>
 
             <FloatingCard
-              className="top-[40px] right-0"
+              className="bottom-[60px] right-0"
               delay={0.6}
               rotation={2}
               shadowColor="rgba(0,0,0,0.2)"
@@ -168,17 +168,6 @@ export function HeroSection() {
               </div>
             </FloatingCard>
 
-            <FloatingCard
-              className="bottom-[30px] left-[3%]"
-              delay={0.8}
-              rotation={-1}
-              shadowColor="rgba(0,0,0,0.2)"
-            >
-              <div className="bg-white p-3 w-[210px]">
-                <div className="text-[9px] tracking-[3px] uppercase text-dark/40 font-sans mb-2">Rock Paper Scissors</div>
-                <LifeTokensSvg />
-              </div>
-            </FloatingCard>
           </div>
         </div>
       </motion.div>
@@ -231,7 +220,7 @@ function StatStrip() {
       {stats.map((stat, i) => (
         <motion.div
           key={i}
-          className="text-center py-6 border-r border-dark/10 last:border-r-0 relative"
+          className="text-center py-4 md:py-6 border-r border-dark/10 last:border-r-0 relative"
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: i * 0.08 }}
