@@ -66,6 +66,16 @@ body {
   cursor: none !important;
 }
 
+/* Restore default cursor on touch devices (mobile/tablet) */
+@media (pointer: coarse) {
+  body {
+    cursor: auto !important;
+  }
+  * {
+    cursor: auto !important;
+  }
+}
+
 h1, h2, h3 {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

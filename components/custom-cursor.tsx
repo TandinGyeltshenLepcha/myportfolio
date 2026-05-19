@@ -14,6 +14,7 @@ export function CustomCursor() {
   const [cursorLabel, setCursorLabel] = useState("")
   const [trail, setTrail] = useState<TrailPoint[]>([])
   const [isClicking, setIsClicking] = useState(false)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
   const trailIdRef = useRef(0)
@@ -23,6 +24,16 @@ export function CustomCursor() {
   const ringY = useSpring(cursorY, springConfig)
 
   useEffect(() => {
+    // Detect touch/mobile devices — hide custom cursor on them
+    const hasTouchScreen =
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches
+    setIsTouchDevice(hasTouchScreen)
+  }, [])
+
+  useEffect(() => {
+    if (isTouchDevice) return
+
     let lastX = 0
     let lastY = 0
 
@@ -73,7 +84,10 @@ export function CustomCursor() {
       window.removeEventListener("mouseup", handleMouseUp)
       clearInterval(trailInterval)
     }
-  }, [cursorX, cursorY])
+  }, [cursorX, cursorY, isTouchDevice])
+
+  // Don't render custom cursor on touch/mobile devices
+  if (isTouchDevice) return null
 
   return (
     <>
@@ -95,7 +109,7 @@ export function CustomCursor() {
           >
             <path
               d="M8 0L8.8 7L16 8L8.8 9L8 16L7.2 9L0 8L7.2 7Z"
-              fill={`rgba(248, 170, 64, ${0.3 + (i * 0.1)})`}
+              fill={`rgba(0, 0, 0, ${0.3 + (i * 0.1)})`}
             />
           </svg>
         </motion.div>
@@ -165,7 +179,7 @@ export function CustomCursor() {
             cy="10"
             r="8"
             fill="none"
-            stroke="#f8aa40"
+            stroke="#000000"
             strokeWidth="1"
             animate={{ 
               r: isHovering ? [8, 10, 8] : 8,
@@ -178,11 +192,11 @@ export function CustomCursor() {
             d="M10 2L11 8L18 10L11 12L10 18L9 12L2 10L9 8Z"
             fill="#000000"
             animate={{ 
-              fill: isClicking ? "#d68a1a" : "#f8aa40"
+              fill: isClicking ? "#333333" : "#000000"
             }}
           />
           {/* Center dot */}
-          <circle cx="10" cy="10" r="2" fill="#f8aa40" />
+          <circle cx="10" cy="10" r="2" fill="#000000" />
         </motion.svg>
       </motion.div>
 
@@ -198,8 +212,8 @@ export function CustomCursor() {
             height: isClicking ? 24 : isHovering ? 64 : 40,
             marginLeft: isClicking ? -12 : isHovering ? -32 : -20,
             marginTop: isClicking ? -12 : isHovering ? -32 : -20,
-            borderColor: isHovering ? "#000000" : "#f8aa40",
-            backgroundColor: isHovering ? "rgba(0,0,0,0.1)" : "rgba(248,170,64,0)",
+            borderColor: isHovering ? "#000000" : "#000000",
+            backgroundColor: isHovering ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0)",
             rotate: isHovering ? 45 : 0,
             borderRadius: isHovering ? "8px" : "50%"
           }}
