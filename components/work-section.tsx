@@ -130,6 +130,11 @@ function ProjectCard({ project, className = "" }: { project: any; className?: st
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"])
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"])
 
+  // Prefetch on hover so click is instant
+  const handleMouseEnter = () => {
+    router.prefetch(`/project/${project.id}`)
+  }
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return
     const rect = cardRef.current.getBoundingClientRect()
@@ -151,6 +156,7 @@ function ProjectCard({ project, className = "" }: { project: any; className?: st
   return (
     <motion.article
       ref={cardRef}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`group relative ${className}`}

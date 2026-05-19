@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { PowerBar } from "@/components/game-effects"
@@ -165,6 +165,11 @@ export default function ProjectPage() {
   const project = projects[id]
   const details = projectDetails[id]
 
+  // Prefetch home on mount so back navigation is instant
+  useEffect(() => {
+    router.prefetch("/")
+  }, [router])
+
   const handleBackToHome = () => {
     if (typeof window !== "undefined") {
       sessionStorage.setItem("gameStarted", "true")
@@ -200,7 +205,7 @@ export default function ProjectPage() {
         }}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.15, ease: "easeOut" }}
       >
         <div className="flex-1" />
 
@@ -283,9 +288,7 @@ export default function ProjectPage() {
               className="font-serif italic leading-snug"
               style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.65rem)", color: "#F8AA40", maxWidth: "680px" }}
             >"{project.hook}"</p>
-            <span className="block mt-2 text-[9px] tracking-[2.5px] uppercase font-bold" style={{ color: "rgba(248,170,64,0.45)" }}>
-              The Hook
-            </span>
+
           </motion.div>
         </div>
       </section>
