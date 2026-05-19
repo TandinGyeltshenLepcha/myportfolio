@@ -14,7 +14,7 @@ export function CustomCursor() {
   const [cursorLabel, setCursorLabel] = useState("")
   const [trail, setTrail] = useState<TrailPoint[]>([])
   const [isClicking, setIsClicking] = useState(false)
-  const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const [isTouchDevice, setIsTouchDevice] = useState<boolean | null>(null)
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
   const trailIdRef = useRef(0)
@@ -28,7 +28,9 @@ export function CustomCursor() {
   useEffect(() => {
     const hasTouchScreen =
       navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(hover: none)").matches ||
+      "ontouchstart" in window
     setIsTouchDevice(hasTouchScreen)
   }, [])
 
@@ -84,7 +86,7 @@ export function CustomCursor() {
     }
   }, [cursorX, cursorY, isTouchDevice])
 
-  if (isTouchDevice) return null
+  if (isTouchDevice === null || isTouchDevice) return null
 
   return (
     <>
