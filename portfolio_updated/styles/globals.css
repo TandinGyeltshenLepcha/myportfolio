@@ -1,0 +1,116 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --amber: #f8aa40;
+  --amber-light: #ffffff;
+  --amber-dark: #d68a1a;
+  --coral: #d68a1a;
+  --cream: #ffffff;
+  --brown: #7a6a00;
+  --dark: #000000;
+  --teal: #1e3d36;
+  --sand: #f8aa40;
+  --muted: #5a4e00;
+
+  --background: #f8aa40;
+  --foreground: #000000;
+  --card: #FFFFFF;
+  --card-foreground: #000000;
+  --primary: #000000;
+  --primary-foreground: #f8aa40;
+  --secondary: #000000;
+  --secondary-foreground: #f8aa40;
+  --muted-color: #5a4e00;
+  --radius: 0.25rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
+  --font-serif: var(--font-playfair), 'Playfair Display', serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted-color);
+  --color-amber: var(--amber);
+  --color-coral: var(--coral);
+  --color-cream: var(--cream);
+  --color-brown: var(--brown);
+  --color-dark: var(--dark);
+  --color-teal: var(--teal);
+  --color-sand: var(--sand);
+  --color-muted: var(--muted);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--amber);
+  overflow-x: hidden;
+  cursor: none !important;
+}
+
+* {
+  cursor: none !important;
+}
+
+/* Restore default cursor on touch devices (mobile/tablet) */
+@media (pointer: coarse) {
+  body {
+    cursor: auto !important;
+  }
+  * {
+    cursor: auto !important;
+  }
+}
+
+h1, h2, h3 {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+p {
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--dark);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--amber);
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-inner {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
