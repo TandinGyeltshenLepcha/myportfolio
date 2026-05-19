@@ -390,7 +390,7 @@ export default function ProjectPage() {
                     <img
                       src={img}
                       alt={`${project.title} showcase ${i + 1}`}
-                      className="w-full h-auto object-cover"
+                      className="w-full h-auto object-cover" loading="lazy"
                       onError={(e) => { (e.target as HTMLImageElement).src = "https://via.placeholder.com/1200x675/0a0a0a/F8AA40?text=Image+Loading" }}
                     />
                     <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)" }} />
@@ -414,7 +414,7 @@ export default function ProjectPage() {
                   <div className="p-8" style={{ background: "#0a0a0a", border: "1px solid rgba(248,170,64,0.12)" }}>
                     <div className="text-[9px] tracking-[2.5px] uppercase font-bold mb-2" style={{ color: "#F8AA40" }}>Character Identity</div>
                     <h3 className="text-base font-bold mb-6" style={{ color: "#FFF" }}>Team Character Cards</h3>
-                    <img src={details.uiAssets.teamCards} alt="Team character cards" className="w-full h-auto object-contain" />
+                    <img src={details.uiAssets.teamCards} alt="Team character cards" className="w-full h-auto object-contain" loading="lazy" />
                     <p className="mt-4 text-xs italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>Featuring Tandin, Lepcha, and Yangki</p>
                   </div>
                 )}
@@ -430,7 +430,7 @@ export default function ProjectPage() {
                       ].map((btn, i) => btn.img && (
                         <div key={i} className="text-center">
                           <div className="p-4" style={{ background: "#111", border: "1px solid rgba(248,170,64,0.08)" }}>
-                            <img src={btn.img} alt={btn.label} className="w-full h-auto" />
+                            <img src={btn.img} alt={btn.label} className="w-full h-auto" loading="lazy" />
                           </div>
                           <div className="mt-2 text-[8px] tracking-[1.5px] uppercase font-bold" style={{ color: "rgba(248,170,64,0.4)" }}>{btn.label}</div>
                         </div>
@@ -447,7 +447,7 @@ export default function ProjectPage() {
                         ].map((btn, i) => btn.img && (
                           <div key={i} className="text-center">
                             <div className="p-4" style={{ background: "#111", border: "1px solid rgba(248,170,64,0.08)" }}>
-                              <img src={btn.img} alt={btn.label} className="w-full h-auto" />
+                              <img src={btn.img} alt={btn.label} className="w-full h-auto" loading="lazy" />
                             </div>
                             <div className="mt-2 text-[8px] tracking-[1px] uppercase font-bold" style={{ color: "rgba(248,170,64,0.3)" }}>{btn.label}</div>
                           </div>
@@ -460,7 +460,7 @@ export default function ProjectPage() {
                         ].map((btn, i) => btn.img && (
                           <div key={i} className="text-center">
                             <div className="p-4 flex justify-center" style={{ background: "#111", border: "1px solid rgba(248,170,64,0.08)" }}>
-                              <img src={btn.img} alt={btn.label} className="h-10 w-auto" />
+                              <img src={btn.img} alt={btn.label} className="h-10 w-auto" loading="lazy" />
                             </div>
                             <div className="mt-2 text-[8px] tracking-[1px] uppercase font-bold" style={{ color: "rgba(248,170,64,0.3)" }}>{btn.label}</div>
                           </div>

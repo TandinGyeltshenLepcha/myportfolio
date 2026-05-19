@@ -18,13 +18,14 @@ export function CustomCursor() {
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
   const trailIdRef = useRef(0)
-  
+  const lastTrailPos = useRef({ x: 0, y: 0 })
+  const trailTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   const springConfig = { damping: 25, stiffness: 400 }
   const ringX = useSpring(cursorX, springConfig)
   const ringY = useSpring(cursorY, springConfig)
 
   useEffect(() => {
-    // Detect touch/mobile devices — hide custom cursor on them
     const hasTouchScreen =
       navigator.maxTouchPoints > 0 ||
       window.matchMedia("(pointer: coarse)").matches
@@ -34,21 +35,23 @@ export function CustomCursor() {
   useEffect(() => {
     if (isTouchDevice) return
 
-    let lastX = 0
-    let lastY = 0
-
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
 
-      // Add trail point if moved enough
-      const dx = e.clientX - lastX
-      const dy = e.clientY - lastY
+      const dx = e.clientX - lastTrailPos.current.x
+      const dy = e.clientY - lastTrailPos.current.y
       if (Math.sqrt(dx * dx + dy * dy) > 15) {
-        lastX = e.clientX
-        lastY = e.clientY
+        lastTrailPos.current = { x: e.clientX, y: e.clientY }
         trailIdRef.current++
-        setTrail(prev => [...prev.slice(-8), { x: e.clientX, y: e.clientY, id: trailIdRef.current }])
+        const id = trailIdRef.current
+        setTrail(prev => [...prev.slice(-6), { x: e.clientX, y: e.clientY, id }])
+
+        // Auto-remove trail point after 400ms instead of setInterval
+        if (trailTimeoutRef.current) clearTimeout(trailTimeoutRef.current)
+        trailTimeoutRef.current = setTimeout(() => {
+          setTrail(prev => prev.filter(p => p.id !== id))
+        }, 400)
       }
     }
 
@@ -72,21 +75,15 @@ export function CustomCursor() {
     window.addEventListener("mousedown", handleMouseDown)
     window.addEventListener("mouseup", handleMouseUp)
 
-    // Clear old trail points
-    const trailInterval = setInterval(() => {
-      setTrail(prev => prev.slice(-6))
-    }, 100)
-
     return () => {
       window.removeEventListener("mousemove", moveCursor)
       document.removeEventListener("mouseover", handleMouseOver)
       window.removeEventListener("mousedown", handleMouseDown)
       window.removeEventListener("mouseup", handleMouseUp)
-      clearInterval(trailInterval)
+      if (trailTimeoutRef.current) clearTimeout(trailTimeoutRef.current)
     }
   }, [cursorX, cursorY, isTouchDevice])
 
-  // Don't render custom cursor on touch/mobile devices
   if (isTouchDevice) return null
 
   return (
@@ -101,15 +98,10 @@ export function CustomCursor() {
           animate={{ scale: 0, opacity: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <svg
-            width="8"
-            height="8"
-            viewBox="0 0 16 16"
-            className="-ml-1 -mt-1"
-          >
+          <svg width="8" height="8" viewBox="0 0 16 16" className="-ml-1 -mt-1">
             <path
               d="M8 0L8.8 7L16 8L8.8 9L8 16L7.2 9L0 8L7.2 7Z"
-              fill={`rgba(0, 0, 0, ${0.3 + (i * 0.1)})`}
+              fill={`rgba(248, 170, 64, ${0.3 + i * 0.08})`}
             />
           </svg>
         </motion.div>
@@ -118,46 +110,22 @@ export function CustomCursor() {
       {/* Crosshair (when hovering) */}
       <AnimatePresence>
         {isHovering && (
-          <>
-            <motion.div
-              className="fixed pointer-events-none z-[9997]"
-              style={{ x: cursorX, y: cursorY }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              {/* Horizontal line */}
-              <motion.div 
-                className="absolute h-px bg-coral/50 top-0"
-                style={{ left: -30, width: 20 }}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-              />
-              <motion.div 
-                className="absolute h-px bg-coral/50 top-0"
-                style={{ left: 10, width: 20 }}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-              />
-              {/* Vertical line */}
-              <motion.div 
-                className="absolute w-px bg-coral/50 left-0"
-                style={{ top: -30, height: 20 }}
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: 1 }}
-              />
-              <motion.div 
-                className="absolute w-px bg-coral/50 left-0"
-                style={{ top: 10, height: 20 }}
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: 1 }}
-              />
-            </motion.div>
-          </>
+          <motion.div
+            className="fixed pointer-events-none z-[9997]"
+            style={{ x: cursorX, y: cursorY }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div className="absolute h-px top-0" style={{ left: -30, width: 20, background: "rgba(248,170,64,0.6)" }} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} />
+            <motion.div className="absolute h-px top-0" style={{ left: 10, width: 20, background: "rgba(248,170,64,0.6)" }} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} />
+            <motion.div className="absolute w-px left-0" style={{ top: -30, height: 20, background: "rgba(248,170,64,0.6)" }} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} />
+            <motion.div className="absolute w-px left-0" style={{ top: 10, height: 20, background: "rgba(248,170,64,0.6)" }} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} />
+          </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Main cursor - Animated star */}
+      {/* Main cursor - star, always amber/white so visible on any bg */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{ x: cursorX, y: cursorY }}
@@ -167,36 +135,33 @@ export function CustomCursor() {
           height="20"
           viewBox="0 0 20 20"
           className="-ml-2.5 -mt-2.5"
-          animate={{ 
+          animate={{
             rotate: isClicking ? 180 : isHovering ? 45 : 0,
             scale: isClicking ? 0.8 : isHovering ? 1.3 : 1
           }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
         >
-          {/* Outer glow */}
+          {/* Outer glow ring */}
           <motion.circle
             cx="10"
             cy="10"
             r="8"
             fill="none"
-            stroke="#000000"
+            stroke="#F8AA40"
             strokeWidth="1"
-            animate={{ 
+            animate={{
               r: isHovering ? [8, 10, 8] : 8,
-              opacity: isHovering ? [0.3, 0.6, 0.3] : 0.3
+              opacity: isHovering ? [0.4, 0.8, 0.4] : 0.4
             }}
             transition={{ duration: 1, repeat: Infinity }}
           />
-          {/* Star shape */}
+          {/* Star */}
           <motion.path
             d="M10 2L11 8L18 10L11 12L10 18L9 12L2 10L9 8Z"
-            fill="#000000"
-            animate={{ 
-              fill: isClicking ? "#333333" : "#000000"
-            }}
+            animate={{ fill: isClicking ? "#ffffff" : "#F8AA40" }}
           />
           {/* Center dot */}
-          <circle cx="10" cy="10" r="2" fill="#000000" />
+          <circle cx="10" cy="10" r="2" fill="#ffffff" />
         </motion.svg>
       </motion.div>
 
@@ -212,8 +177,8 @@ export function CustomCursor() {
             height: isClicking ? 24 : isHovering ? 64 : 40,
             marginLeft: isClicking ? -12 : isHovering ? -32 : -20,
             marginTop: isClicking ? -12 : isHovering ? -32 : -20,
-            borderColor: isHovering ? "#000000" : "#000000",
-            backgroundColor: isHovering ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0)",
+            borderColor: "#F8AA40",
+            backgroundColor: isHovering ? "rgba(248,170,64,0.08)" : "rgba(248,170,64,0)",
             rotate: isHovering ? 45 : 0,
             borderRadius: isHovering ? "8px" : "50%"
           }}
@@ -230,14 +195,7 @@ export function CustomCursor() {
             initial={{ opacity: 0, scale: 0.8, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
-            style={{ 
-              left: 0, 
-              top: 0,
-              x: ringX, 
-              y: ringY,
-              marginLeft: 30,
-              marginTop: -8
-            }}
+            style={{ left: 0, top: 0, x: ringX, y: ringY, marginLeft: 30, marginTop: -8 }}
           >
             <svg width="10" height="10" viewBox="0 0 10 10" className="inline-block mr-1 text-amber" aria-hidden="true"><path d="M2 1L8 5L2 9V1Z" fill="currentColor"/></svg>
             {cursorLabel}
@@ -245,7 +203,7 @@ export function CustomCursor() {
         )}
       </AnimatePresence>
 
-      {/* Click ripple effect */}
+      {/* Click ripple */}
       <AnimatePresence>
         {isClicking && (
           <motion.div
